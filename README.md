@@ -1,12 +1,12 @@
-## C4 Project
+###  C4 Project
 
 # Tech: React + Tailwind CSS + Vite
 
 
-## Getting Started
+# Getting Started
 
 
-### 1. Clone the repository
+# 1. Clone the repository
 
 ```bash
 git clone https://github.com/tarang5757/C4-Project.git
