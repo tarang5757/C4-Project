@@ -1,245 +1,217 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Partners = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="max-w-6xl mx-auto space-y-12">
-      {/* Page Header */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Partners</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </div>
-
-      {/* Partnership Impact */}
-      <div className="bg-gradient-to-r from-food-green-500 to-food-orange-500 rounded-lg p-8 text-white text-center">
-        <h2 className="text-3xl font-bold mb-6">Impact</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div>
-            <div className="text-4xl font-bold mb-2">100+</div>
-            <div className="text-lg">Partners</div>
-          </div>
-          <div>
-            <div className="text-4xl font-bold mb-2">25+</div>
-            <div className="text-lg">Locations</div>
-          </div>
-          <div>
-            <div className="text-4xl font-bold mb-2">95%</div>
-            <div className="text-lg">Satisfaction</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Category 1 */}
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold mb-6 text-food-green-600">
-          Category 1
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="border-l-4 border-food-green-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 1
-            </h3>
-            <p className="text-food-green-600 font-medium text-sm mb-2">
-              Location 1
-            </p>
-            <p className="text-gray-600 text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-          <div className="border-l-4 border-food-green-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 2
-            </h3>
-            <p className="text-food-green-600 font-medium text-sm mb-2">
-              Location 2
-            </p>
-            <p className="text-gray-600 text-sm">
-              Sed do eiusmod tempor incididunt ut labore.
-            </p>
-          </div>
-          <div className="border-l-4 border-food-green-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 3
-            </h3>
-            <p className="text-food-green-600 font-medium text-sm mb-2">
-              Location 3
-            </p>
-            <p className="text-gray-600 text-sm">
-              Ut enim ad minim veniam, quis nostrud exercitation.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Category 2 */}
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold mb-6 text-food-orange-600">
-          Category 2
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="border-l-4 border-food-orange-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 4
-            </h3>
-            <p className="text-food-orange-600 font-medium text-sm mb-2">
-              Location 4
-            </p>
-            <p className="text-gray-600 text-sm">
-              Duis aute irure dolor in reprehenderit.
-            </p>
-          </div>
-          <div className="border-l-4 border-food-orange-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 5
-            </h3>
-            <p className="text-food-orange-600 font-medium text-sm mb-2">
-              Location 5
-            </p>
-            <p className="text-gray-600 text-sm">
-              Excepteur sint occaecat cupidatat non proident.
-            </p>
-          </div>
-          <div className="border-l-4 border-food-orange-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 6
-            </h3>
-            <p className="text-food-orange-600 font-medium text-sm mb-2">
-              Location 6
-            </p>
-            <p className="text-gray-600 text-sm">
-              Sunt in culpa qui officia deserunt mollit.
-            </p>
+    <div className="min-h-screen bg-gray-50">
+      <nav className="bg-[#4CAF50]">
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-between">
+            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              {/* Mobile menu button*/}
+              <button
+                type="button"
+                className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
+                aria-controls="mobile-menu"
+                aria-expanded={isMenuOpen}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                <span className="absolute -inset-0.5"></span>
+                <span className="sr-only">Open main menu</span>
+                {/* Icon when menu is closed. */}
+                <svg
+                  className={`block size-6 ${isMenuOpen ? "hidden" : "block"}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                  data-slot="icon"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+                {/* Icon when menu is open. */}
+                <svg
+                  className={`hidden size-6 ${isMenuOpen ? "block" : "hidden"}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                  data-slot="icon"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex shrink-0 items-center">
+                <span className="text-xl font-bold tracking-wide text-white">
+                  Open Doors
+                </span>
+              </div>
+              <div className="hidden sm:ml-6 sm:block">
+                <div className="flex space-x-4">
+                  <Link
+                    to="/"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/about"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    to="/partners"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
+                  >
+                    Partners
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
+                  >
+                    Contact
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              {/* Notification and Profile dropdowns removed for simplicity */}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Category 3 */}
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold mb-6 text-food-green-600">
-          Category 3
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="border-l-4 border-food-green-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 7
-            </h3>
-            <p className="text-food-green-600 font-medium text-sm mb-2">
-              Location 7
-            </p>
-            <p className="text-gray-600 text-sm">
-              Nulla facilisi morbi tempus iaculis.
-            </p>
-          </div>
-          <div className="border-l-4 border-food-green-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 8
-            </h3>
-            <p className="text-food-green-600 font-medium text-sm mb-2">
-              Location 8
-            </p>
-            <p className="text-gray-600 text-sm">
-              Viverra mauris in aliquam sem fringilla.
-            </p>
-          </div>
-          <div className="border-l-4 border-food-green-500 pl-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Partner 9
-            </h3>
-            <p className="text-food-green-600 font-medium text-sm mb-2">
-              Location 9
-            </p>
-            <p className="text-gray-600 text-sm">
-              Eget nulla facilisi etiam dignissim diam.
-            </p>
+        {/* Mobile menu, show/hide based on menu state. */}
+        <div
+          className={`sm:hidden ${isMenuOpen ? "block" : "hidden"}`}
+          id="mobile-menu"
+        >
+          <div className="space-y-1 px-2 pt-2 pb-3">
+            <Link
+              to="/"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              About
+            </Link>
+            <Link
+              to="/partners"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Partners
+            </Link>
+            <Link
+              to="/contact"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Contact
+            </Link>
           </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Become a Partner */}
-      <div className="bg-food-green-50 rounded-lg p-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-food-green-700 mb-4">
-            Join Us
+      {/* Hero/Banner Section */}
+      <section
+        className="relative min-h-screen flex items-center justify-center text-white py-20 px-4"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><defs><linearGradient id=\"bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\"><stop offset=\"0%\" style=\"stop-color:%234ade80;stop-opacity:0.8\" /><stop offset=\"100%\" style=\"stop-color:%2316a34a;stop-opacity:0.9\" /></linearGradient></defs><rect width=\"1200\" height=\"800\" fill=\"url(%23bg)\"/><circle cx=\"200\" cy=\"150\" r=\"30\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"800\" cy=\"200\" r=\"40\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"400\" cy=\"600\" r=\"25\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"1000\" cy=\"500\" r=\"35\" fill=\"%23ffffff\" opacity=\"0.1\"/><rect x=\"100\" y=\"400\" width=\"100\" height=\"100\" rx=\"10\" fill=\"%23ffffff\" opacity=\"0.05\"/><rect x=\"900\" y=\"100\" width=\"80\" height=\"80\" rx=\"8\" fill=\"%23ffffff\" opacity=\"0.05\"/></svg>')`,
+        }}
+      >
+        <div className="max-w-md mx-auto text-center space-y-6">
+          <h2 className="text-4xl font-bold leading-tight">
+            Our Valued Partners
           </h2>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore.
+          <div className="w-24 h-1 bg-white mx-auto"></div>
+          <p className="text-lg leading-relaxed">
+            Collaborating to create a stronger community and reduce food
+            insecurity.
           </p>
         </div>
+      </section>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-food-green-700 mb-4">
-              Option 1
-            </h3>
-            <ul className="space-y-2 text-gray-700">
-              <li>• Lorem ipsum dolor sit amet</li>
-              <li>• Consectetur adipiscing elit</li>
-              <li>• Sed do eiusmod tempor</li>
-              <li>• Incididunt ut labore</li>
-              <li>• Et dolore magna aliqua</li>
-            </ul>
-            <button className="mt-4 bg-food-green-600 text-white px-6 py-2 rounded-lg hover:bg-food-green-700 transition-colors">
-              Action 1
-            </button>
-          </div>
-
-          <div className="bg-white rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-food-orange-600 mb-4">
-              Option 2
-            </h3>
-            <ul className="space-y-2 text-gray-700">
-              <li>• Ut enim ad minim veniam</li>
-              <li>• Quis nostrud exercitation</li>
-              <li>• Ullamco laboris nisi</li>
-              <li>• Ut aliquip ex ea commodo</li>
-              <li>• Duis aute irure dolor</li>
-            </ul>
-            <button className="mt-4 bg-food-orange-500 text-white px-6 py-2 rounded-lg hover:bg-food-orange-600 transition-colors">
-              Action 2
-            </button>
+      {/* Partnership Impact */}
+      <section className="bg-white py-16 px-4">
+        <div className="max-w-md mx-auto text-center">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 relative">
+            Our Impact
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-food-green-600"></div>
+          </h3>
+          <div className="grid grid-cols-2 gap-6 text-center">
+            <div>
+              <div className="text-4xl font-bold text-food-green-600">100+</div>
+              <div className="text-gray-700 text-base">Partners</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-food-orange-500">25+</div>
+              <div className="text-gray-700 text-base">Locations</div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Categories */}
+      <section className="bg-gradient-to-r from-yellow-200 to-yellow-300 py-16 px-4">
+        <div className="max-w-md mx-auto">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Partner Categories
+          </h3>
+          <div className="space-y-6">
+            <div className="bg-white bg-opacity-70 rounded-lg p-6 shadow-md">
+              <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                Category 1
+              </h4>
+              <p className="text-gray-700 leading-relaxed text-base">
+                Description of partners in this category.
+              </p>
+            </div>
+            <div className="bg-white bg-opacity-70 rounded-lg p-6 shadow-md">
+              <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                Category 2
+              </h4>
+              <p className="text-gray-700 leading-relaxed text-base">
+                Description of partners in this category.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials */}
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-          Testimonials
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-food-green-50 p-6 rounded-lg">
-            <p className="text-gray-700 italic mb-4">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            </p>
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-food-green-200 rounded-full flex items-center justify-center mr-4">
-                <span className="text-food-green-700 font-bold">P1</span>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">Partner Name 1</p>
-                <p className="text-food-green-600 text-sm">Category 1</p>
-              </div>
+      <section className="bg-white py-16 px-4">
+        <div className="max-w-md mx-auto text-center">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 relative">
+            Testimonials
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-food-green-600"></div>
+          </h3>
+          <div className="space-y-6">
+            <div className="bg-gray-100 rounded-lg p-6 italic text-gray-800 leading-relaxed text-base">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             </div>
-          </div>
-          <div className="bg-food-orange-50 p-6 rounded-lg">
-            <p className="text-gray-700 italic mb-4">
-              "Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat."
-            </p>
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-food-orange-200 rounded-full flex items-center justify-center mr-4">
-                <span className="text-food-orange-700 font-bold">P2</span>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">Partner Name 2</p>
-                <p className="text-food-orange-600 text-sm">Category 2</p>
-              </div>
+            <div className="bg-gray-100 rounded-lg p-6 italic text-gray-800 leading-relaxed text-base">
+              "Ut enim ad minim veniam, quis nostrud exercitation."
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
