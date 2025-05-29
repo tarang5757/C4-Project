@@ -1,166 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const OpenDoors = () => {
+  // State for mobile menu toggle
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Navigation links data
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/partners", label: "Partners" },
+    { to: "/contact", label: "Contact" },
+  ];
+
   return (
-    <div className="space-y-0">
-      {/* Hero Section - Full Screen */}
-      <div className="relative min-h-screen -mt-6 -mx-4 sm:-mx-6 lg:-mx-8">
-        {/* Background with Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+
+      {/* Hero Section */}
+      <div className="relative min-h-screen">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%234ade80;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%2316a34a;stop-opacity:0.9" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23bg)"/><circle cx="200" cy="150" r="30" fill="%23ffffff" opacity="0.1"/><circle cx="800" cy="200" r="40" fill="%23ffffff" opacity="0.1"/><circle cx="400" cy="600" r="25" fill="%23ffffff" opacity="0.1"/><circle cx="1000" cy="500" r="35" fill="%23ffffff" opacity="0.1"/><rect x="100" y="400" width="100" height="100" rx="10" fill="%23ffffff" opacity="0.05"/><rect x="900" y="100" width="80" height="80" rx="8" fill="%23ffffff" opacity="0.05"/></svg>')`,
+          }}
+        />
 
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Welcome to Open Doors
-            </h1>
+          <div className="max-w-md mx-auto space-y-6">
+            <h2 className="text-4xl font-bold leading-tight">
+              Nothing Wasted.
+              <br />
+              Everything Shared.
+            </h2>
 
             <div className="w-24 h-1 bg-white mx-auto"></div>
 
-            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-              Connecting communities through sustainable solutions. We're
-              building a better future where nothing is wasted and everything is
-              shared with purpose.
+            <p className="text-lg leading-relaxed">
+              We aim to connect farmers with those in need, creating a
+              sustainable system that reduces food waste and supports
+              communities.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link
-                to="/home"
-                className="bg-white text-food-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Get Started
-              </Link>
-              <Link
-                to="/about"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-food-green-600 transition-colors"
-              >
-                Learn More
-              </Link>
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Impact Statistics */}
-      <section className="bg-white py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-            Our Impact
-          </h2>
-          <div className="w-16 h-1 bg-food-green-600 mx-auto mb-12"></div>
+      {/* Our Mission Section */}
+      <section className="bg-white py-12 px-6">
+        <div className="max-w-md mx-auto text-center">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 relative">
+            Our Mission
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-food-green-600"></div>
+          </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="text-4xl md:text-5xl font-bold text-food-green-600 mb-4">
-                100+
-              </div>
-              <div className="text-xl text-gray-600 font-medium">
-                Communities Served
-              </div>
-            </div>
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="text-4xl md:text-5xl font-bold text-food-orange-500 mb-4">
-                50K+
-              </div>
-              <div className="text-xl text-gray-600 font-medium">
-                Lives Impacted
-              </div>
-            </div>
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="text-4xl md:text-5xl font-bold text-food-green-600 mb-4">
-                25+
-              </div>
-              <div className="text-xl text-gray-600 font-medium">
-                Partner Organizations
-              </div>
-            </div>
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="text-4xl md:text-5xl font-bold text-food-orange-500 mb-4">
-                95%
-              </div>
-              <div className="text-xl text-gray-600 font-medium">
-                Success Rate
-              </div>
-            </div>
-          </div>
+          <p className="text-gray-700 leading-relaxed text-sm">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a
+            magna et tortor venenatis rhoncus. Nullam sodales est et justo
+            lobortis, non volutpat orci interdum. Curabitur lobortis tellus sed
+            erat aliquet ex pharetra eu. Curabitur tincidunt vestibulum
+            molestie. Curabitur nunc erat elit. Ut urna libero, tincidunt quis
+            commodo sed, vestibulum ac nisl. Suspendisse sit amet nisl sem.
+            Integer in nulla pellentesque, lobortis ligula eget, efficitur
+            tellus.
+          </p>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="bg-gray-50 py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-            How It Works
-          </h2>
-          <div className="w-16 h-1 bg-food-green-600 mx-auto mb-12"></div>
+      {/* Why We Do This Section */}
+      <section className="bg-gradient-to-r from-yellow-200 to-yellow-300 py-12 px-6">
+        <div className="max-w-md mx-auto">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            Why we do this
+          </h3>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-20 h-20 bg-food-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-10 h-10 text-food-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Connect</h3>
-              <p className="text-gray-600 leading-relaxed">
-                We connect communities with resources, creating sustainable
-                partnerships that benefit everyone involved.
+          <div className="space-y-4">
+            <div className="bg-white bg-opacity-70 rounded-lg p-4">
+              <h4 className="font-semibold text-gray-900 mb-2">
+                Reduce Food Waste
+              </h4>
+              <p className="text-gray-700 text-sm">
+                Millions of tons of perfectly good food go to waste while people
+                go hungry. We bridge this gap.
               </p>
             </div>
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-20 h-20 bg-food-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-10 h-10 text-food-orange-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3a4 4 0 118 0v4m-4 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Share</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Through our platform, resources are shared efficiently and
-                transparently, ensuring maximum impact.
+
+            <div className="bg-white bg-opacity-70 rounded-lg p-4">
+              <h4 className="font-semibold text-gray-900 mb-2">
+                Support Communities
+              </h4>
+              <p className="text-gray-700 text-sm">
+                By connecting surplus food with those in need, we strengthen
+                community bonds and food security.
               </p>
             </div>
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-20 h-20 bg-food-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-10 h-10 text-food-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Impact</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Together, we create lasting positive change that strengthens
-                communities and builds a sustainable future.
+
+            <div className="bg-white bg-opacity-70 rounded-lg p-4">
+              <h4 className="font-semibold text-gray-900 mb-2">
+                Environmental Impact
+              </h4>
+              <p className="text-gray-700 text-sm">
+                Reducing food waste helps decrease greenhouse gas emissions and
+                promotes sustainable living.
               </p>
             </div>
           </div>
@@ -168,23 +111,44 @@ const OpenDoors = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-food-green-600 py-16 px-6 text-center text-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Make a Difference?
-          </h2>
-          <p className="text-lg md:text-xl mb-8 text-food-green-100 leading-relaxed">
-            Join our growing community of changemakers and help us build a more
-            sustainable and connected world.
+      <section className="bg-food-green-600 py-12 px-6 text-center text-white">
+        <div className="max-w-md mx-auto">
+          <h3 className="text-2xl font-bold mb-4">Get Involved</h3>
+          <p className="mb-6 text-food-green-100">
+            Join our mission to create a sustainable food sharing network in
+            your community.
           </p>
-          <Link
-            to="/home"
-            className="inline-block bg-white text-food-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg"
-          >
-            Join Our Mission
-          </Link>
+          <div className="space-y-3">
+            <button className="w-full bg-white text-food-green-600 py-3 px-6 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              Become a Partner
+            </button>
+            <button className="w-full border-2 border-white text-white py-3 px-6 rounded-lg font-semibold hover:bg-white hover:text-food-green-600 transition-colors">
+              Learn More
+            </button>
+          </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-8 px-6 text-center">
+        <div className="max-w-md mx-auto">
+          <h4 className="text-lg font-bold mb-4">Open Doors</h4>
+          <p className="text-gray-400 text-sm mb-4">
+            Connecting communities through sustainable food sharing.
+          </p>
+          <div className="flex justify-center space-x-6 text-sm">
+            <a href="#" className="text-gray-400 hover:text-white">
+              Privacy
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white">
+              Terms
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white">
+              Contact
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
-  // State for mobile menu toggle
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Navigation links data
@@ -14,92 +14,125 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="relative flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-4 shadow-sm">
-      <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
-        {/* Logo and Mobile Menu Button Container */}
-        <div className="flex items-center justify-between">
+    <nav className="bg-white shadow-lg relative z-30">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link
-            to="/"
-            className="flex-none text-2xl font-bold text-gray-900 hover:text-food-green-600 transition-colors"
-            aria-label="Open Doors"
-          >
-            Open Doors
-          </Link>
-
-          {/* Mobile Menu Button */}
-          <div className="sm:hidden">
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative size-10 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-              aria-expanded={isMenuOpen}
-              aria-label="Toggle navigation"
+          <div className="flex items-center">
+            <Link
+              to="/"
+              className="text-xl font-bold text-food-green-700 flex items-center"
+              onClick={() => setIsMenuOpen(false)}
             >
-              {!isMenuOpen ? (
-                <svg
-                  className="shrink-0 size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="3" x2="21" y1="6" y2="6" />
-                  <line x1="3" x2="21" y1="12" y2="12" />
-                  <line x1="3" x2="21" y1="18" y2="18" />
-                </svg>
-              ) : (
-                <svg
-                  className="shrink-0 size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
-              )}
-              <span className="sr-only">Toggle navigation</span>
-            </button>
+              <svg
+                className="w-8 h-8 mr-2 text-food-orange-500"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+              Company
+            </Link>
+          </div>
+
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex space-x-4">
+            <Link
+              to="/"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/")
+                  ? "bg-food-green-500 text-white"
+                  : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/about")
+                  ? "bg-food-green-500 text-white"
+                  : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+              }`}
+            >
+              About
+            </Link>
+            <Link
+              to="/partners"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/partners")
+                  ? "bg-food-green-500 text-white"
+                  : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+              }`}
+            >
+              Partners
+            </Link>
+            <Link
+              to="/resources"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/resources")
+                  ? "bg-food-green-500 text-white"
+                  : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+              }`}
+            >
+              Resources
+            </Link>
           </div>
         </div>
 
-        {/* Navigation Links - Desktop and Mobile */}
-        <div
-          className={`${
-            isMenuOpen ? "block" : "hidden"
-          } sm:block overflow-hidden transition-all duration-300 basis-full grow`}
-        >
-          <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-            {navLinks.map((link) => (
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 w-full bg-white border-t shadow-lg">
+            <nav className="p-4 space-y-3">
               <Link
-                key={link.to}
-                to={link.to}
-                className={`text-base font-medium ${
-                  link.to === "/"
-                    ? "text-food-green-600"
-                    : "text-gray-600 hover:text-food-green-600"
-                } focus:outline-hidden focus:text-food-green-600 transition-colors`}
+                to="/"
                 onClick={() => setIsMenuOpen(false)}
+                className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/")
+                    ? "bg-food-green-500 text-white"
+                    : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+                }`}
               >
-                {link.label}
+                Home
               </Link>
-            ))}
+              <Link
+                to="/about"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/about")
+                    ? "bg-food-green-500 text-white"
+                    : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+                }`}
+              >
+                About
+              </Link>
+              <Link
+                to="/partners"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/partners")
+                    ? "bg-food-green-500 text-white"
+                    : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+                }`}
+              >
+                Partners
+              </Link>
+              <Link
+                to="/resources"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/resources")
+                    ? "bg-food-green-500 text-white"
+                    : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+                }`}
+              >
+                Resources
+              </Link>
+            </nav>
           </div>
-        </div>
-      </nav>
-    </header>
+        )}
+      </div>
+    </nav>
   );
 };
 
