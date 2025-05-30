@@ -6,38 +6,48 @@ const Home = () => {
         {/* Background with Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
 
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Welcome to Our Mission
-            </h1>
 
-            <div className="w-24 h-1 bg-white mx-auto"></div>
+        <div
+          className="relative min-h-screen bg-cover bg-center"
+          style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1663039840873-68759f9eec40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+        >
+            <div className="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
 
-            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-              Connecting communities through sustainable solutions. We're
-              building a better future where nothing is wasted and everything is
-              shared with purpose.
-            </p>
+          {/* Hero Content inside green rounded box */}
+          <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
+            <div className="bg-[#5A7D4F]  rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                Nothing Wasted. Everything Shared.
+              </h1>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <button className="bg-white text-food-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                Get Started
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-food-green-600 transition-colors">
-                Learn More
-              </button>
+              <div className="w-24 h-1 bg-white mx-auto"></div>
+
+              <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                We aim to connect farmers with those in need, creating a sustainable system that reduces food waste and supports communities.
+              </p>
+
+              {/* no sure if we should jump straigh to call to action */}
+              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <button className="bg-white text-green-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                  Get Started
+                </button>
+                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-700 transition-colors">
+                  Learn More
+                </button>
+              </div> */}
             </div>
           </div>
         </div>
-      </div>
 
+
+
+      </div>
+      
       {/* Impact Statistics */}
-      <section className="bg-white py-16 px-6">
+      {/* <section className="bg-white py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Our Impact
+            How We Do It
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
@@ -70,7 +80,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* How It Works */}
       <section className="bg-gray-50 py-16 px-6">
@@ -97,12 +107,12 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Connect</h3>
+              <h3 className="text-xl font-semibold mb-4">Match</h3>
               <p className="text-gray-600 leading-relaxed">
-                We connect communities with resources, creating sustainable
-                partnerships that benefit everyone involved.
+                We match surplus produce from local farmers markets with nearby community organizations that can distribute it to people in need.
               </p>
             </div>
+
             <div className="text-center bg-white rounded-lg p-8 shadow-sm">
               <div className="w-20 h-20 bg-food-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
@@ -119,12 +129,12 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Share</h3>
+              <h3 className="text-xl font-semibold mb-4">Coordinate</h3>
               <p className="text-gray-600 leading-relaxed">
-                Through our platform, resources are shared efficiently and
-                transparently, ensuring maximum impact.
+                Once matched, we coordinate pickup times and locations, notify both parties, and provide key details like estimated travel time and donation contents.
               </p>
             </div>
+
             <div className="text-center bg-white rounded-lg p-8 shadow-sm">
               <div className="w-20 h-20 bg-food-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
@@ -141,27 +151,34 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Impact</h3>
+              <h3 className="text-xl font-semibold mb-4">Deliver Impact</h3>
               <p className="text-gray-600 leading-relaxed">
-                Together, we create lasting positive change that strengthens
-                communities and builds a sustainable future.
+                Together, we reduce food waste and expand access to fresh, healthy food — building stronger, more connected communities in the process.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+       <div
+        className="w-full h-48"
+        style={{ backgroundColor: '#072F1C' }}
+      ></div>
+
+
+
       {/* Call to Action */}
-      <section className="bg-food-green-600 py-16 px-6 text-center text-white">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 px-6 text-center "   style={{ backgroundColor: '#F0F3F3' }}>
+        <div className="max-w-4xl mx-auto"
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Make a Difference?
           </h2>
-          <p className="text-lg md:text-xl mb-8 text-food-green-100 leading-relaxed">
+          <p className="text-lg md:text-xl mb-8 text-food--100 leading-relaxed">
             Join our growing community of changemakers and help us build a more
             sustainable and connected world.
           </p>
-          <button className="bg-white text-food-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg">
+          <button className="bg-[#FFC709] text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg">
             Join Our Mission
           </button>
         </div>

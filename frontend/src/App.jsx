@@ -8,9 +8,9 @@ import OpenDoors from "./pages/OpenDoors";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<OpenDoors />} />
+      {/* <Route path="/" element={<OpenDoors />} /> */}
       <Route
-        path="/home"
+        path="/"
         element={
           <Layout>
             <Home />
