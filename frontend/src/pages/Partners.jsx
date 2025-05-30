@@ -1,214 +1,283 @@
-import React, { useState } from "react";
+import React from "react";
+import Navigation from "../components/Navigation";
 import { Link } from "react-router-dom";
 
 const Partners = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-[#4CAF50]">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="relative flex h-16 items-center justify-between">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              {/* Mobile menu button*/}
-              <button
-                type="button"
-                className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
-                aria-controls="mobile-menu"
-                aria-expanded={isMenuOpen}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                <span className="absolute -inset-0.5"></span>
-                <span className="sr-only">Open main menu</span>
-                {/* Icon when menu is closed. */}
-                <svg
-                  className={`block size-6 ${isMenuOpen ? "hidden" : "block"}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-                {/* Icon when menu is open. */}
-                <svg
-                  className={`hidden size-6 ${isMenuOpen ? "block" : "hidden"}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18 18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex shrink-0 items-center">
-                <span className="text-xl font-bold tracking-wide text-white">
-                  Open Doors
-                </span>
-              </div>
-              <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
-                  <Link
-                    to="/"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    to="/partners"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
-                  >
-                    Partners
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-green-700 hover:text-white"
-                  >
-                    Contact
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              {/* Notification and Profile dropdowns removed for simplicity */}
-            </div>
-          </div>
-        </div>
+      <Navigation />
 
-        {/* Mobile menu, show/hide based on menu state. */}
-        <div
-          className={`sm:hidden ${isMenuOpen ? "block" : "hidden"}`}
-          id="mobile-menu"
-        >
-          <div className="space-y-1 px-2 pt-2 pb-3">
-            <Link
-              to="/"
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              About
-            </Link>
-            <Link
-              to="/partners"
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              Partners
-            </Link>
-            <Link
-              to="/contact"
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              Contact
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero/Banner Section */}
-      <section
-        className="relative min-h-screen flex items-center justify-center text-white py-20 px-4"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><defs><linearGradient id=\"bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\"><stop offset=\"0%\" style=\"stop-color:%234ade80;stop-opacity:0.8\" /><stop offset=\"100%\" style=\"stop-color:%2316a34a;stop-opacity:0.9\" /></linearGradient></defs><rect width=\"1200\" height=\"800\" fill=\"url(%23bg)\"/><circle cx=\"200\" cy=\"150\" r=\"30\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"800\" cy=\"200\" r=\"40\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"400\" cy=\"600\" r=\"25\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"1000\" cy=\"500\" r=\"35\" fill=\"%23ffffff\" opacity=\"0.1\"/><rect x=\"100\" y=\"400\" width=\"100\" height=\"100\" rx=\"10\" fill=\"%23ffffff\" opacity=\"0.05\"/><rect x=\"900\" y=\"100\" width=\"80\" height=\"80\" rx=\"8\" fill=\"%23ffffff\" opacity=\"0.05\"/></svg>')`,
-        }}
-      >
-        <div className="max-w-md mx-auto text-center space-y-6">
-          <h2 className="text-4xl font-bold leading-tight">
-            Our Valued Partners
-          </h2>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-[#4CAF50] to-[#45a049] py-32 px-4">
+        <div className="max-w-4xl mx-auto text-center text-white space-y-8">
+          <h1 className="text-5xl font-bold leading-tight">
+            Let's Work Together
+            <br />
+            to Share More Food
+          </h1>
           <div className="w-24 h-1 bg-white mx-auto"></div>
-          <p className="text-lg leading-relaxed">
-            Collaborating to create a stronger community and reduce food
-            insecurity.
+          <p className="text-xl leading-relaxed max-w-2xl mx-auto">
+            Whether you're a farmer with extra produce or someone who wants to
+            help feed your community, we'd love to have you join our food
+            sharing network.
           </p>
         </div>
       </section>
 
-      {/* Partnership Impact */}
-      <section className="bg-white py-16 px-4">
-        <div className="max-w-md mx-auto text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 relative">
-            Our Impact
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-food-green-600"></div>
-          </h3>
-          <div className="grid grid-cols-2 gap-6 text-center">
-            <div>
-              <div className="text-4xl font-bold text-food-green-600">100+</div>
-              <div className="text-gray-700 text-base">Partners</div>
+      {/* Partnership Impact Section */}
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              How We Help Each Other
+            </h2>
+            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 rounded-lg p-8">
+              <div className="text-[#4CAF50] mb-4">
+                <svg
+                  className="w-12 h-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                For Farmers
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                We help you find good homes for your extra produce. Instead of
+                letting food go to waste, you can share it with people who
+                really need it. Plus, you'll be helping your community and our
+                planet.
+              </p>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-food-orange-500">25+</div>
-              <div className="text-gray-700 text-base">Locations</div>
+            <div className="bg-gray-50 rounded-lg p-8">
+              <div className="text-[#4CAF50] mb-4">
+                <svg
+                  className="w-12 h-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                For Community Groups
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                We make it easy to get fresh, healthy food for the people you
+                serve. Whether you're a food bank, community center, or
+                neighborhood group, we'll help you connect with local farmers
+                and get the food you need.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="bg-gradient-to-r from-yellow-200 to-yellow-300 py-16 px-4">
-        <div className="max-w-md mx-auto">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Partner Categories
-          </h3>
-          <div className="space-y-6">
-            <div className="bg-white bg-opacity-70 rounded-lg p-6 shadow-md">
-              <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                Category 1
-              </h4>
-              <p className="text-gray-700 leading-relaxed text-base">
-                Description of partners in this category.
+      {/* Partner Categories Section */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Who Can Join Us
+            </h2>
+            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-[#4CAF50] mb-4">
+                <svg
+                  className="w-12 h-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Local Farmers
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                If you grow food and sometimes have extra, we can help you share
+                it with people who need it. It's a great way to help your
+                community and make sure your hard work doesn't go to waste.
               </p>
             </div>
-            <div className="bg-white bg-opacity-70 rounded-lg p-6 shadow-md">
-              <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                Category 2
-              </h4>
-              <p className="text-gray-700 leading-relaxed text-base">
-                Description of partners in this category.
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-[#4CAF50] mb-4">
+                <svg
+                  className="w-12 h-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Food Banks & Pantries
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                We help you get fresh, local food for the people you serve. It's
+                a simple way to add more healthy options to your shelves and
+                support local farmers at the same time.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-[#4CAF50] mb-4">
+                <svg
+                  className="w-12 h-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Community Groups
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                If you're part of a group that helps feed people in your
+                community, we'd love to work with you. We can help you get fresh
+                food and connect with local farmers who want to help.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-[#4CAF50] mb-4">
+                <svg
+                  className="w-12 h-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Businesses
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                If your business wants to help feed your community, we can show
+                you how. Whether you're a restaurant, grocery store, or any
+                other business, there are lots of ways to get involved and make
+                a difference.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="bg-white py-16 px-4">
-        <div className="max-w-md mx-auto text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 relative">
-            Testimonials
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-food-green-600"></div>
-          </h3>
-          <div className="space-y-6">
-            <div className="bg-gray-100 rounded-lg p-6 italic text-gray-800 leading-relaxed text-base">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      {/* Testimonials Section */}
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What Our Partners Say
+            </h2>
+            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 rounded-lg p-8">
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                  FF
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    Farm Fresh Co.
+                  </h3>
+                  <p className="text-[#4CAF50]">Local Farm</p>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed italic">
+                "We used to feel bad about having to throw away extra produce.
+                Now, thanks to this network, we can share our food with people
+                who really need it. It's made such a difference in our
+                community!"
+              </p>
             </div>
-            <div className="bg-gray-100 rounded-lg p-6 italic text-gray-800 leading-relaxed text-base">
-              "Ut enim ad minim veniam, quis nostrud exercitation."
+            <div className="bg-gray-50 rounded-lg p-8">
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                  CF
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    Community Food Bank
+                  </h3>
+                  <p className="text-[#4CAF50]">Food Bank</p>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed italic">
+                "Getting fresh, local food has been a game-changer for us. The
+                people we serve love the quality, and we love being able to
+                support our local farmers. It's a win-win for everyone!"
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Join Us Section */}
+      <section className="py-24 px-4 bg-[#4CAF50] text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Join Us?</h2>
+          <p className="text-xl mb-12 max-w-2xl mx-auto">
+            Whether you're a farmer with extra food or a group that wants to
+            help feed your community, we'd love to have you join our network.
+            Let's work together to make sure good food doesn't go to waste!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contact"
+              className="inline-block bg-white text-[#4CAF50] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg shadow-lg"
+            >
+              Get Started
+            </Link>
+            <Link
+              to="/about"
+              className="inline-block border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#4CAF50] transition-colors text-lg"
+            >
+              Learn More
+            </Link>
           </div>
         </div>
       </section>

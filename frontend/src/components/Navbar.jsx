@@ -30,6 +30,12 @@ const Navbar = () => {
           >
             Resources
           </Link>
+          <Link
+            to="/contact"
+            className="text-base font-medium transition-colors hover:underline"
+          >
+            Contact
+          </Link>
         </div>
       </div>
     </nav>

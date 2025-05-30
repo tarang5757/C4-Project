@@ -442,15 +442,15 @@ const QuestionnaireForm = () => {
     return (
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="bg-[#4CAF50] px-6 py-8 text-center text-white">
-          <h2 className="text-3xl font-bold mb-2">Join Our Network</h2>
+          <h2 className="text-3xl font-bold mb-2">Become a Partner</h2>
           <p className="text-lg text-green-100">
-            Connect to share fresh, local food
+            Join our community to share or receive fresh, local food.
           </p>
         </div>
 
         <div className="p-8 space-y-6">
           <h3 className="text-xl font-semibold text-gray-800 text-center mb-6">
-            I am a...
+            Tell us a bit about yourself...
           </h3>
 
           <button
@@ -466,7 +466,7 @@ const QuestionnaireForm = () => {
                   Farmer / Producer
                 </h3>
                 <p className="text-sm text-gray-600">
-                  I grow food and want to help
+                  I grow delicious food and want to share my harvest.
                 </p>
               </div>
             </div>
@@ -486,7 +486,7 @@ const QuestionnaireForm = () => {
                   Food Bank / Organization
                 </h3>
                 <p className="text-sm text-gray-600">
-                  We need fresh food for our community
+                  We need fresh food to nourish our community.
                 </p>
               </div>
             </div>
@@ -503,13 +503,13 @@ const QuestionnaireForm = () => {
       <div className="bg-[#4CAF50] px-6 py-8 text-center text-white">
         <h2 className="text-3xl font-bold mb-2">
           {userType === "farmer"
-            ? "Farmer Registration"
-            : "Organization Registration"}
+            ? "Farmer Information"
+            : "Organization Information"}
         </h2>
         <p className="text-lg text-green-100">
           {userType === "farmer"
-            ? "Share your surplus produce with those in need"
-            : "Connect with local farmers to receive fresh food"}
+            ? "Help us learn about your farm and what you grow."
+            : "Tell us about your organization and food needs."}
         </p>
       </div>
 
@@ -527,7 +527,8 @@ const QuestionnaireForm = () => {
             ))}
           </div>
           <p className="text-sm text-gray-600 text-center">
-            Step {currentStep + 1} of {questions.length}
+            Step {currentStep + 1} of {questions.length} -{" "}
+            {questions[currentStep].title}
           </p>
         </div>
 
@@ -561,7 +562,7 @@ const QuestionnaireForm = () => {
                 onClick={() => setCurrentStep(currentStep + 1)}
                 className="ml-auto flex items-center px-8 py-3 bg-[#4CAF50] text-white rounded-lg hover:bg-green-600 transition-colors"
               >
-                Next
+                Next Step
                 <ChevronRight className="w-5 h-5 ml-2" />
               </button>
             ) : (
@@ -571,7 +572,7 @@ const QuestionnaireForm = () => {
                 className="ml-auto flex items-center px-8 py-3 bg-[#4CAF50] text-white rounded-lg hover:bg-green-600 transition-colors"
               >
                 <Check className="w-5 h-5 mr-2" />
-                Submit Application
+                Submit and Connect
               </button>
             )}
           </div>
