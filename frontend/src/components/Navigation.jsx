@@ -60,11 +60,15 @@ const Navigation = () => {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <Link
-                to="/"
-                className="text-xl font-bold tracking-wide text-[#4CAF50]"
-              >
-                Open Doors
+              <Link to="/" className="flex items-center">
+                <img
+                  src="/Logo.png"
+                  alt="Open Doors Logo"
+                  className="h-10 w-auto mr-2"
+                />
+                <span className="text-xl font-bold tracking-wide text-[#4CAF50]">
+                  Open Doors
+                </span>
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
