@@ -3,8 +3,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Partners from "./pages/Partners";
-import OpenDoors from "./pages/OpenDoors";
-
+import Resources from "./pages/Resources";
 function App() {
   return (
     <Routes>
@@ -30,6 +29,14 @@ function App() {
         element={
           <Layout>
             <Partners />
+          </Layout>
+        }
+      />
+      <Route
+        path="/resources"
+        element={
+          <Layout>
+            <Resources />
           </Layout>
         }
       />
