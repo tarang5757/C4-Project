@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import QuestionnaireForm from "../components/QuestionnaireForm";
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -133,7 +134,7 @@ const Home = () => {
       <section
         className="relative min-h-screen flex items-center justify-center text-white py-20 px-4"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><defs><linearGradient id=\"bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\"><stop offset=\"0%\" style=\"stop-color:%234ade80;stop-opacity:0.8\" /><stop offset=\"100%\" style=\"stop-color:%2316a34a;stop-opacity:0.9\" /></linearGradient></defs><rect width=\"1200\" height=\"800\" fill=\"url(%23bg)\"/><circle cx=\"200\" cy=\"150\" r=\"30\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"800\" cy=\"200\" r=\"40\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"400\" cy=\"600\" r=\"25\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"1000\" cy=\"500\" r=\"35\" fill=\"%23ffffff\" opacity=\"0.1\"/><rect x=\"100\" y=\"400\" width=\"100\" height=\"100\" rx=\"10\" fill=\"%23ffffff\" opacity=\"0.05\"/><rect x=\"900\" y=\"100\" width=\"80\" height=\"80\" rx=\"8\" fill=\"%23ffffff\" opacity=\"0.05\"/></svg>')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><defs><linearGradient id=\"bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\"><stop offset=\"0%\" style=\"stop-color:%234ade80;stop-opacity:0.8\" /><stop offset=\"100%\" style=\"stop-color:%2316a34a;stop-opacity:0.9\" /></linearGradient></defs><rect width=\"1200\" height=\"800\" fill=\"url(%23bg)\"/><circle cx=\"200\" cy=\"150\" r=\"30\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"800\" cy=\"200\" r=\"40\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"400\" cy=\"600\" r=\"25\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"1000\" cy=\"500\" r=\"35\" fill=\"%23ffffff\" opacity=\"0.1\"/><rect x=\"100\" y=\"400\" width=\"100\" height=\"100\" rx=\"10\" fill=\"%23ffffff\" opacity=\"0.05\"/><rect x=\"900\" y=\"100\" width=\"80\" height=\"80\" rx=\"8\" fill=\"%23ffffff\" opacity=\"0.05\"/></svg>')`,
         }}
       >
         <div className="max-w-md mx-auto text-center space-y-6">
@@ -224,6 +225,13 @@ const Home = () => {
               Learn More
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* Questionnaire Form */}
+      <section className="py-16 px-4 bg-gray-100">
+        <div className="max-w-2xl mx-auto">
+          <QuestionnaireForm />
         </div>
       </section>
     </div>
