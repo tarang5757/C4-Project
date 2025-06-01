@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "../components/Navigation";
 import { Link } from "react-router-dom";
+import TeamSection from "../components/TeamSection";
 
 const About = () => {
   return (
@@ -145,127 +146,7 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-24 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Meet Our Team
-            </h2>
-            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
-            <p className="mt-6 text-gray-600 text-lg max-w-2xl mx-auto">
-              We are students from York University's C4 - Cross Campus Classroom
-              platform. Through our research, we discovered the critical
-              importance of raising awareness about food waste and the need to
-              connect rural communities, city organizations, and farmers to
-              ensure fresh food reaches those who need it most.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  TP
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Tarang Patel
-                  </h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  JA
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Jayson Amike
-                  </h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  DS
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Diane Serufuli
-                  </h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  TS
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Tandeep Sandhra
-                  </h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  K
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">Kunal</h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  JC
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Jian Cheng
-                  </h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  JP
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Jacob Phillips
-                  </h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-[#4CAF50] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  MH
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    MianYi Huang
-                  </h3>
-                  <p className="text-[#4CAF50]">Student</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     <TeamSection />
 
       {/* Donation Section */}
       <section className="py-24 px-4 bg-gray-50">
