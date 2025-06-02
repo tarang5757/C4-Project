@@ -22,12 +22,12 @@ const Home = () => {
 
         {/* Hero Content inside green rounded box */}
         <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
-          <div className="bg-[#3A4F41] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
+          <div className="bg-[#3A4F41] bg-opacity-90 rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               Nothing Wasted. Everything Shared.
             </h1>
 
-            <div className="w-24 h-1 bg-white mx-auto"></div>
+            <div className="w-24 h-1 bg-[#FFFBB4] mx-auto"></div>
 
             <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
               We aim to connect farmers with those in need, creating a sustainable system that reduces food waste and supports communities.
