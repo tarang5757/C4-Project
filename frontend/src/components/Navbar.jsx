@@ -71,6 +71,16 @@ const Navbar = () => {
             >
               Resources
             </Link>
+            <Link
+              to="/BecomePartner"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/BecomePartner")
+                  ? "bg-food-green-500 text-white"
+                  : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+              }`}
+            >
+              BecomePartner
+            </Link>
           </div>
 
           {/* Mobile Hamburger Menu */}
@@ -144,6 +154,17 @@ const Navbar = () => {
                 }`}
               >
                 Resources
+              </Link>
+              <Link
+                to="/BecomePartner"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/BecomePartner")
+                    ? "bg-food-green-500 text-white"
+                    : "text-gray-700 hover:text-food-green-600 hover:bg-food-green-50"
+                }`}
+              >
+                BecomePartner
               </Link>
             </nav>
           </div>

@@ -18,7 +18,7 @@ const Home = () => {
           backgroundSize: 'cover',
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-0 z-0"></div>
+        <div className="absolute inset-0 bg-white bg-opacity-20 z-0"></div>
 
         {/* Hero Content inside green rounded box */}
         <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
@@ -32,6 +32,10 @@ const Home = () => {
             <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
               We aim to connect farmers with those in need, creating a sustainable system that reduces food waste and supports communities.
             </p>
+
+            <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+            Join Us
+          </button>
 
             {/* Call to Action (Optional) */}
             {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -140,9 +144,11 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Match</h3>
+              <h3 className="text-xl font-semibold mb-4">Stop Food Waste</h3>
               <p className="text-gray-600 leading-relaxed">
-                We match surplus produce from local farmers markets with nearby community organizations that can distribute it to people in need.
+                It's heartbreaking to see fresh, healthy food go to waste when so many people are hungry. We're here to change that by making it easy to share extra food with those who need it.
+
+
               </p>
             </div>
 
@@ -162,9 +168,9 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Coordinate</h3>
+              <h3 className="text-xl font-semibold mb-4">Help Our Neighbors</h3>
               <p className="text-gray-600 leading-relaxed">
-                Once matched, we coordinate pickup times and locations, notify both parties, and provide key details like estimated travel time and donation contents.
+                When we share food, we're not just feeding people - we're building stronger communities. Every meal shared is a chance to show we care about each other.
               </p>
             </div>
 
@@ -184,9 +190,9 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Deliver Impact</h3>
+              <h3 className="text-xl font-semibold mb-4">Care for Our Planet</h3>
               <p className="text-gray-600 leading-relaxed">
-                Together, we reduce food waste and expand access to fresh, healthy food — building stronger, more connected communities in the process.
+                When we waste less food, we help our planet too. It's a simple way to make a big difference for our environment and future generations.
               </p>
             </div>
           </div>
@@ -214,7 +220,7 @@ const Home = () => {
             {/* bowl of vegatable 
             download */}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-4xl font-bold mb-6">
             Ready to Make a Difference?
           </h2>
           <p className="text-lg md:text-xl mb-10 text-food--100 leading-relaxed ">
