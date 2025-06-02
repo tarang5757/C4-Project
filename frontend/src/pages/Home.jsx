@@ -1,52 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navigation from "../components/Navbar";
 import QuestionnaireForm from "../components/QuestionnaireForm";
 
 const Home = () => {
   return (
     <div className="space-y-0">
       {/* Hero Section - Full Screen */}
-      <div className="relative min-h-screen -mt-6 -mx-4 sm:-mx-6 lg:-mx-8">
-        {/* Background with Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
+      <div className="relative min-h-screen overflow-hidden">
+      {/* Background with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
+      
+      <div
+        className="relative min-h-screen bg-cover bg-center"
+        style={{
+          backgroundImage: "url('https://plus.unsplash.com/premium_photo-1663039840873-68759f9eec40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
 
+        {/* Hero Content inside green rounded box */}
+        <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
+          <div className="bg-[#5A7D4F] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              Nothing Wasted. Everything Shared.
+            </h1>
 
-        <div
-          className="relative min-h-screen bg-cover bg-center"
-          style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1663039840873-68759f9eec40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
-        >
-            <div className="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
+            <div className="w-24 h-1 bg-white mx-auto"></div>
 
-          {/* Hero Content inside green rounded box */}
-          <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
-            <div className="bg-[#5A7D4F]  rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                Nothing Wasted. Everything Shared.
-              </h1>
+            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+              We aim to connect farmers with those in need, creating a sustainable system that reduces food waste and supports communities.
+            </p>
 
-              <div className="w-24 h-1 bg-white mx-auto"></div>
-
-              <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-                We aim to connect farmers with those in need, creating a sustainable system that reduces food waste and supports communities.
-              </p>
-
-              {/* no sure if we should jump straigh to call to action */}
-              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <button className="bg-white text-green-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                  Get Started
-                </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-700 transition-colors">
-                  Learn More
-                </button>
-              </div> */}
-            </div>
+            {/* Call to Action (Optional) */}
+            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <button className="bg-white text-green-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                Get Started
+              </button>
+              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-700 transition-colors">
+                Learn More
+              </button>
+            </div> */}
           </div>
         </div>
-
-
-
       </div>
+    </div>
+
       
       {/* Impact Statistics */}
       {/* <section className="bg-white py-16 px-6">
