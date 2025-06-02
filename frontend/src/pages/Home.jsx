@@ -1,3 +1,8 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import Navigation from "../components/Navigation";
+import QuestionnaireForm from "../components/QuestionnaireForm";
+
 const Home = () => {
   return (
     <div className="space-y-0">
@@ -82,19 +87,20 @@ const Home = () => {
         </div>
       </section> */}
 
-      {/* How It Works */}
-      <section className="bg-gray-50 py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-            How It Works
-          </h2>
-          <div className="w-16 h-1 bg-food-green-600 mx-auto mb-12"></div>
-
+      {/* Why We Do This Section */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Why We Care
+            </h2>
+            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-20 h-20 bg-food-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-[#4CAF50] mb-4">
                 <svg
-                  className="w-10 h-10 text-food-green-600"
+                  className="w-12 h-12"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -102,8 +108,8 @@ const Home = () => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
+                    strokeWidth="2"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                   />
                 </svg>
               </div>
@@ -116,7 +122,7 @@ const Home = () => {
             <div className="text-center bg-white rounded-lg p-8 shadow-sm">
               <div className="w-20 h-20 bg-food-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-10 h-10 text-food-orange-500"
+                  className="w-12 h-12"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -124,8 +130,8 @@ const Home = () => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3a4 4 0 118 0v4m-4 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
+                    strokeWidth="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
               </div>
@@ -138,7 +144,7 @@ const Home = () => {
             <div className="text-center bg-white rounded-lg p-8 shadow-sm">
               <div className="w-20 h-20 bg-food-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-10 h-10 text-food-green-600"
+                  className="w-12 h-12"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -146,8 +152,8 @@ const Home = () => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    strokeWidth="2"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </div>

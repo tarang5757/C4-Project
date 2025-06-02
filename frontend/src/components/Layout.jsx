@@ -1,4 +1,3 @@
-import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 const Layout = ({ children }) => {
@@ -7,7 +6,7 @@ const Layout = ({ children }) => {
       <Navbar />
 
       {/* Main Content */}
-      <main>
+      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {children}
       </main>
 
