@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
+import BecomePartner from "./pages/BecomePartner";
 function App() {
   return (
     <Layout>
