@@ -13,12 +13,12 @@ const Home = () => {
       <div
         className="relative min-h-screen bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://plus.unsplash.com/premium_photo-1663039840873-68759f9eec40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          backgroundImage: "url('/opening_Image.jpg')",
           backgroundPosition: 'center center',
           backgroundSize: 'cover',
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-0 z-0"></div>
 
         {/* Hero Content inside green rounded box */}
         <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
@@ -88,14 +88,49 @@ const Home = () => {
       </section> */}
 
       {/* Why We Do This Section */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-10 px-4 bg-[#FFFBB4] bg-opacity-50">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-5">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What We're All About
+            </h2>
+            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+          </div>
+
+
+          <div className="flex justify-center items-center">
+            <img
+              src="/Care.png"
+              alt="Our Team"
+              className="w-30 h-auto rounded-2xl shadow-lg mb-5"
+            />
+          </div>
+          
+          <div className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto text-center">
+            We believe that no one should go hungry while good food goes to waste. That's why we're building a community where farmers can easily share their extra produce with people who need it most.
+            <br/><br/>
+            Whether you're a farmer with extra food or someone looking to help feed your community, we make it simple to connect and make a difference together.
+          </div>
+        </div>
+      </section>
+
+<section className="py-24 px-4 bg-[#FFFBB4] bg-opacity-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-5">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why We Care
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
+
+          <div className="flex justify-center items-center">
+            <img
+              src="/Care.png"
+              alt="Our Team"
+              className="w-90 h-auto rounded-2xl shadow-lg mb-5"
+            />
+          </div>
+          
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-[#4CAF50] mb-4">
@@ -166,6 +201,7 @@ const Home = () => {
         </div>
       </section>
 
+      
        <div
         className="w-full h-48"
         style={{ backgroundColor: '#072F1C' }}

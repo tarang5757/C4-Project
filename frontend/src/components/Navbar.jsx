@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import logo from '../images/logo.png'; // adjust path as needed
+import logo from '../../public/Logo.png'; // adjust path as needed
 
 
 const Navbar = () => {
