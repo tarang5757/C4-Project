@@ -114,26 +114,18 @@ const Home = () => {
         </div>
       </section>
 
-<section className="py-24 px-4 bg-[#FFFBB4] bg-opacity-50">
+      <section className="py-10 px-4 bg-[#EB5D8D]">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-5">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 text-white">
               Why We Care
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
-
-          <div className="flex justify-center items-center">
-            <img
-              src="/Care.png"
-              alt="Our Team"
-              className="w-90 h-auto rounded-2xl shadow-lg mb-5"
-            />
-          </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-[#4CAF50] mb-4">
+            <div className="text-center bg-white rounded-lg p-8 shadow-sm">
+              <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
                   className="w-12 h-12"
                   fill="none"
@@ -204,23 +196,32 @@ const Home = () => {
       
        <div
         className="w-full h-48"
-        style={{ backgroundColor: '#072F1C' }}
+        style={{ backgroundColor: '#646536' }}
       ></div>
 
 
 
       {/* Call to Action */}
-      <section className="py-16 px-6 text-center "   style={{ backgroundColor: '#F0F3F3' }}>
+      <section className="py-8 px-6 text-center "   style={{ backgroundColor: '#F0F3F3' }}>
         <div className="max-w-4xl mx-auto"
         >
+           <div className="flex justify-center items-center">
+            <img
+              src="/download.png"
+              alt="Our Team"
+              className=" mb-8 w-60 h-auto"
+            />
+            {/* bowl of vegatable 
+            download */}
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Make a Difference?
           </h2>
-          <p className="text-lg md:text-xl mb-8 text-food--100 leading-relaxed">
+          <p className="text-lg md:text-xl mb-10 text-food--100 leading-relaxed ">
             Join our growing community of changemakers and help us build a more
             sustainable and connected world.
           </p>
-          <button className="bg-[#FFC709] text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg">
+          <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg">
             Join Our Mission
           </button>
         </div>
