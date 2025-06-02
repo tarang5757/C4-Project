@@ -5,31 +5,63 @@ const Partners = () => {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#4CAF50] to-[#45a049] py-32 px-4">
-        <div className="max-w-4xl mx-auto text-center text-white space-y-8">
-          <h1 className="text-5xl font-bold leading-tight">
-            Let's Work Together
-            <br />
-            to Share More Food
-          </h1>
-          <div className="w-24 h-1 bg-white mx-auto"></div>
-          <p className="text-xl leading-relaxed max-w-2xl mx-auto">
-            Whether you're a farmer with extra produce or someone who wants to
-            help feed your community, we'd love to have you join our food
-            sharing network.
-          </p>
-        </div>
-      </section>
+      <div className="relative min-h-screen overflow-hidden">
+      {/* Background with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
+      
+      <div
+        className="relative min-h-screen bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/fruits.jpg')",
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-20 z-0"></div>
 
+        {/* Hero Content inside green rounded box */}
+        <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
+          <div className="bg-[#663F46] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
+            <div className="max-w-4xl mx-auto text-center text-white space-y-8">
+          
+              <h1 className="text-5xl font-bold leading-tight">
+                Let's Work Together
+                <br />
+                to Share More Food
+              </h1>
+              <div className="w-24 h-1 bg-white mx-auto"></div>
+              <p className="text-xl leading-relaxed max-w-2xl mx-auto">
+                Whether you're a farmer with extra produce or someone who wants to
+                help feed your community, we'd love to have you join our food
+                sharing network.
+              </p>
+
+                <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+            Join Us
+          </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
       {/* Partnership Impact Section */}
-      <section className="py-24 px-4 bg-white">
+      <section className="py-10 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               How We Help Each Other
             </h2>
+
+            
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+            <div className="flex justify-center items-center">
+              <img
+                src="/Help.png"
+                alt="Our Team"
+                className="w-30 h-auto rounded-2xl shadow-lg mt-10 mb-5"
+              />
+            </div>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-50 rounded-lg p-8">
@@ -89,10 +121,15 @@ const Partners = () => {
       </section>
 
       {/* Partner Categories Section */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-10 px-4 bg-gray-50"
+      style={{
+          backgroundImage: "url('/Togrther.png')",
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+        }}>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 text-white">
               Who Can Join Us
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
@@ -201,12 +238,18 @@ const Partners = () => {
             </div>
           </div>
         </div>
+        <div className="flex justify-center mt-10 items-center">
+          <button className="bg-[#FFC709] text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+            Join Us
+          </button>
+        </div>
+
       </section>
 
       {/* Testimonials Section */}
       <section className="py-24 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               What Our Partners Say
             </h2>
@@ -255,7 +298,7 @@ const Partners = () => {
       </section>
 
       {/* Join Us Section */}
-      <section className="py-24 px-4 bg-[#4CAF50] text-white">
+      {/* <section className="py-24 px-4 bg-[#4CAF50] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Join Us?</h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto">
@@ -278,7 +321,7 @@ const Partners = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
