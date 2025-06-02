@@ -1,11 +1,9 @@
 import React from "react";
-import Navigation from "../components/Navigation";
 import { Link } from "react-router-dom";
 
 const Partners = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#4CAF50] to-[#45a049] py-32 px-4">

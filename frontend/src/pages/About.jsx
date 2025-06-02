@@ -1,12 +1,10 @@
 import React from "react";
-import Navigation from "../components/Navigation";
 import { Link } from "react-router-dom";
 import TeamSection from "../components/TeamSection";
 
 const About = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative py-32 px-4">

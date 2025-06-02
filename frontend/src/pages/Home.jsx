@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/Navbar";
 import QuestionnaireForm from "../components/QuestionnaireForm";
 
 const Home = () => {
