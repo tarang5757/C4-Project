@@ -22,7 +22,7 @@ const Home = () => {
 
         {/* Hero Content inside green rounded box */}
         <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
-          <div className="bg-[#5A7D4F] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
+          <div className="bg-[#3A4F41] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               Nothing Wasted. Everything Shared.
             </h1>
