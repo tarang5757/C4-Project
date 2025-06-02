@@ -26,7 +26,7 @@ const Contact = () => {
     <>
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <section className="bg-[#4CAF50] py-10 px-4">
+        <section className="bg-[#4CAF50] py-16 px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
             <p className="text-lg text-gray-100">
@@ -37,7 +37,7 @@ const Contact = () => {
         </section>
 
         {/* Contact Form Section */}
-        <section className="py-10 px-4">
+        <section className="py-16 px-4">
           <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <form onSubmit={handleSubmit} className="space-y-6">

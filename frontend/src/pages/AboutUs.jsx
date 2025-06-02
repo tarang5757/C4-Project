@@ -2,39 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TeamSection from "../components/TeamSection";
 
-const About = () => {
+const AboutUs = () => {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* Hero Section */}
-      <section className="relative py-32 px-4">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/Group-Picture.jpg"
-            alt="Our Team"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto text-center text-white space-y-8">
-          <h1 className="text-5xl font-bold leading-tight -[#4CAF50]">
-            Meet the People
-            <br />
-            Behind Our Mission
-          </h1>
-          <div className="w-24 h-1 bg-white mx-auto"></div>
-          <p className="text-xl leading-relaxed max-w-2xl mx-auto">
-            We're a team of food lovers, community builders, and problem solvers
-            who believe that sharing food is one of the best ways to bring
-            people together.
-          </p>
-        </div>
-      </section>
+      
 
       {/* Mission Section */}
-      <section className="py-24 px-4 bg-white">
+      <section className="py-10 px-4 bg-white">
+
+         <div className="flex justify-center items-center">
+            <img
+              src="/about.png"
+              alt="Our Team"
+              className="w-1/2 h-1/2 rounded-2xl shadow-lg mb-5"
+            />
+          </div>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-5">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Story</h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
@@ -55,10 +40,10 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-10  bg-[#214F4B] opacity-100 ">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 text-white">
               What Matters to Us
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
@@ -141,13 +126,17 @@ const About = () => {
             </div>
           </div>
         </div>
+        <div className="flex justify-center mt-10 items-center">
+          <button className="bg-[#FFC709] text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+            Join Us
+          </button>
+        </div>
       </section>
-
-      {/* Team Section */}
-     <TeamSection />
+     
+      
 
       {/* Donation Section */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-24 px-4 bg-[#5DAA75] opacity-100 ">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
             Support Food Security
@@ -292,7 +281,7 @@ const About = () => {
       </section>
 
       {/* Join Us Section */}
-      <section className="py-24 px-4 bg-[#4CAF50] text-white">
+      {/* <section className="py-24 px-4 bg-[#4CAF50] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Want to Join Our Team?</h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto">
@@ -315,9 +304,9 @@ const About = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
 
-export default About;
+export default AboutUs;
