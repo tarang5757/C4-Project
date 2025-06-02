@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navigation from "../components/Navbar";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +24,6 @@ const Contact = () => {
 
   return (
     <>
-      <Navigation />
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
         <section className="bg-[#4CAF50] py-16 px-4">
