@@ -138,11 +138,11 @@ const AboutUs = () => {
       {/* Donation Section */}
       <section className="py-24 px-4 bg-[#5DAA75] opacity-100 ">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6 text-white">
             Support Food Security
           </h2>
-          <div className="w-24 h-1 bg-[#4CAF50] mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-black mx-auto mb-8 "></div>
+          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto text-white">
             Together, we can make a difference in our community. Your support
             helps ensure that fresh, nutritious food reaches those who need it
             most.
