@@ -7,38 +7,40 @@ const Home = () => {
     <div className="space-y-0">
       {/* Hero Section - Full Screen */}
       <div className="relative min-h-screen overflow-hidden">
-      {/* Background with Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
-      
-      <div
-        className="relative min-h-screen bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/opening_Image.jpg')",
-          backgroundPosition: 'center center',
-          backgroundSize: 'cover',
-        }}
-      >
-        <div className="absolute inset-0 bg-white bg-opacity-20 z-0"></div>
+        {/* Background with Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
 
-        {/* Hero Content inside green rounded box */}
-        <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
-          <div className="bg-[#3A4F41] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Nothing Wasted. Everything Shared.
-            </h1>
+        <div
+          className="relative min-h-screen bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/landscape.jpg')",
+            backgroundPosition: "center center",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="absolute inset-0 bg-white bg-opacity-20 z-0"></div>
 
-            <div className="w-24 h-1 bg-white mx-auto"></div>
+          {/* Hero Content inside green rounded box */}
+          <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
+            <div className="bg-[#3A4F41] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                Nothing Wasted. Everything Shared.
+              </h1>
 
-            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-              We aim to connect farmers with those in need, creating a sustainable system that reduces food waste and supports communities.
-            </p>
+              <div className="w-24 h-1 bg-white mx-auto"></div>
 
-            <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
-            Join Us
-          </button>
+              <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                We aim to connect farmers with those in need, creating a
+                sustainable system that reduces food waste and supports
+                communities.
+              </p>
 
-            {/* Call to Action (Optional) */}
-            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+                Join Us
+              </button>
+
+              {/* Call to Action (Optional) */}
+              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <button className="bg-white text-green-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
                 Get Started
               </button>
@@ -46,12 +48,11 @@ const Home = () => {
                 Learn More
               </button>
             </div> */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-      
       {/* Impact Statistics */}
       {/* <section className="bg-white py-16 px-6">
         <div className="max-w-6xl mx-auto">
@@ -101,7 +102,6 @@ const Home = () => {
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
 
-
           <div className="flex justify-center items-center">
             <img
               src="/Care.png"
@@ -109,11 +109,16 @@ const Home = () => {
               className="w-30 h-auto rounded-2xl shadow-lg mb-5"
             />
           </div>
-          
+
           <div className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto text-center">
-            We believe that no one should go hungry while good food goes to waste. That's why we're building a community where farmers can easily share their extra produce with people who need it most.
-            <br/><br/>
-            Whether you're a farmer with extra food or someone looking to help feed your community, we make it simple to connect and make a difference together.
+            We believe that no one should go hungry while good food goes to
+            waste. That's why we're building a community where farmers can
+            easily share their extra produce with people who need it most.
+            <br />
+            <br />
+            Whether you're a farmer with extra food or someone looking to help
+            feed your community, we make it simple to connect and make a
+            difference together.
           </div>
         </div>
       </section>
@@ -126,7 +131,7 @@ const Home = () => {
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center bg-white rounded-lg p-8 shadow-sm">
               <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -146,9 +151,9 @@ const Home = () => {
               </div>
               <h3 className="text-xl font-semibold mb-4">Stop Food Waste</h3>
               <p className="text-gray-600 leading-relaxed">
-                It's heartbreaking to see fresh, healthy food go to waste when so many people are hungry. We're here to change that by making it easy to share extra food with those who need it.
-
-
+                It's heartbreaking to see fresh, healthy food go to waste when
+                so many people are hungry. We're here to change that by making
+                it easy to share extra food with those who need it.
               </p>
             </div>
 
@@ -170,7 +175,9 @@ const Home = () => {
               </div>
               <h3 className="text-xl font-semibold mb-4">Help Our Neighbors</h3>
               <p className="text-gray-600 leading-relaxed">
-                When we share food, we're not just feeding people - we're building stronger communities. Every meal shared is a chance to show we care about each other.
+                When we share food, we're not just feeding people - we're
+                building stronger communities. Every meal shared is a chance to
+                show we care about each other.
               </p>
             </div>
 
@@ -190,28 +197,28 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Care for Our Planet</h3>
+              <h3 className="text-xl font-semibold mb-4">
+                Care for Our Planet
+              </h3>
               <p className="text-gray-600 leading-relaxed">
-                When we waste less food, we help our planet too. It's a simple way to make a big difference for our environment and future generations.
+                When we waste less food, we help our planet too. It's a simple
+                way to make a big difference for our environment and future
+                generations.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      
-       <div
-        className="w-full h-48"
-        style={{ backgroundColor: '#646536' }}
-      ></div>
-
-
+      <div className="w-full h-48" style={{ backgroundColor: "#646536" }}></div>
 
       {/* Call to Action */}
-      <section className="py-8 px-6 text-center "   style={{ backgroundColor: '#F0F3F3' }}>
-        <div className="max-w-4xl mx-auto"
-        >
-           <div className="flex justify-center items-center">
+      <section
+        className="py-8 px-6 text-center "
+        style={{ backgroundColor: "#F0F3F3" }}
+      >
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-center items-center">
             <img
               src="/download.png"
               alt="Our Team"

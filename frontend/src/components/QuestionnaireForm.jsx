@@ -1,5 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { ChevronRight, ChevronLeft, User, Truck, Check } from "lucide-react";
+import { supabase } from "../lib/supabase";
+import {
+  LoadScript,
+  GoogleMap,
+  useJsApiLoader,
+  StandaloneSearchBox,
+  Autocomplete,
+} from "@react-google-maps/api";
+import AddressInput from "./AddressInput";
+
+const libraries = ["places"];
 
 const QuestionnaireForm = () => {
   const [userType, setUserType] = useState("");
@@ -11,10 +22,7 @@ const QuestionnaireForm = () => {
     email: "",
     phone: "",
     whatsapp: "",
-    address: "",
-    city: "",
-    state: "",
-    zipCode: "",
+    location: null, // This will store the full location object
 
     // Farmer specific
     farmSize: "",
@@ -41,6 +49,62 @@ const QuestionnaireForm = () => {
     preferredDeliveryDays: [],
     urgencyLevel: "",
   });
+
+  const autocompleteRef = useRef(null);
+
+  const handlePlaceChanged = () => {
+    const place = autocompleteRef.current.getPlace();
+    if (place.geometry) {
+      const { lat, lng } = place.geometry.location;
+      const addressComponents = place.address_components;
+
+      // Extract address components
+      const streetNumber =
+        addressComponents.find((component) =>
+          component.types.includes("street_number")
+        )?.long_name || "";
+      const route =
+        addressComponents.find((component) => component.types.includes("route"))
+          ?.long_name || "";
+      const city =
+        addressComponents.find((component) =>
+          component.types.includes("locality")
+        )?.long_name || "";
+      const state =
+        addressComponents.find((component) =>
+          component.types.includes("administrative_area_level_1")
+        )?.short_name || "";
+      const zipCode =
+        addressComponents.find((component) =>
+          component.types.includes("postal_code")
+        )?.long_name || "";
+
+      setFormData((prev) => ({
+        ...prev,
+        location: {
+          address: `${streetNumber} ${route}`.trim(),
+          city,
+          state,
+          zipCode,
+          latitude: lat(),
+          longitude: lng(),
+        },
+      }));
+    }
+  };
+
+  const handleLocationChange = (locationData) => {
+    setFormData((prev) => ({
+      ...prev,
+      location: locationData,
+      address: locationData.address,
+      city: locationData.city,
+      state: locationData.state,
+      zipCode: locationData.zipCode,
+      latitude: locationData.latitude,
+      longitude: locationData.longitude,
+    }));
+  };
 
   const farmerQuestions = [
     {
@@ -72,14 +136,11 @@ const QuestionnaireForm = () => {
       title: "Location",
       fields: [
         {
-          name: "address",
+          name: "location",
           label: "Farm Address",
-          type: "text",
+          type: "location",
           required: true,
         },
-        { name: "city", label: "City", type: "text", required: true },
-        { name: "state", label: "State", type: "text", required: true },
-        { name: "zipCode", label: "ZIP Code", type: "text", required: true },
       ],
     },
     {
@@ -190,10 +251,12 @@ const QuestionnaireForm = () => {
     {
       title: "Location",
       fields: [
-        { name: "address", label: "Address", type: "text", required: true },
-        { name: "city", label: "City", type: "text", required: true },
-        { name: "state", label: "State", type: "text", required: true },
-        { name: "zipCode", label: "ZIP Code", type: "text", required: true },
+        {
+          name: "location",
+          label: "Organization Address",
+          type: "location",
+          required: true,
+        },
       ],
     },
     {
@@ -426,16 +489,127 @@ const QuestionnaireForm = () => {
           </div>
         );
 
+      case "location":
+        return (
+          <div key={field.name} className="mb-6">
+            <AddressInput
+              label={field.label}
+              value={formData.location}
+              onChange={handleLocationChange}
+              required={field.required}
+              error={field.error}
+            />
+          </div>
+        );
+
       default:
         return null;
     }
   };
 
   const handleSubmit = async () => {
-    // Here you would submit to your backend
-    console.log("Submitting:", { userType, ...formData });
-    // Add API call to save to Supabase
-    alert("Form submitted successfully! We will match you with partners soon.");
+    try {
+      if (!formData.location) {
+        throw new Error("Please enter a valid address");
+      }
+
+      // Insert profile with coordinates
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .insert({
+          user_type: userType,
+          organization_name: formData.organizationName,
+          contact_name: formData.contactName,
+          email: formData.email,
+          phone: formData.phone,
+          whatsapp: formData.whatsapp,
+          address: formData.location.address,
+          city: formData.location.city,
+          state: formData.location.state,
+          zip_code: formData.location.zipCode,
+          lat: formData.location.latitude,
+          lng: formData.location.longitude,
+          sms_opt_in: formData.smsOptIn || false,
+          whatsapp_opted_in: formData.whatsappOptIn || false,
+        })
+        .select()
+        .single();
+
+      if (profileError) throw profileError;
+
+      // Insert farmer or recipient data
+      if (userType === "farmer") {
+        const { error: farmerError } = await supabase.from("farmers").insert({
+          profile_id: profile.id,
+          farm_size: formData.farmSize,
+          crop_types: formData.cropTypes,
+          organic_certified: formData.organicCertified,
+          production_volume: formData.productionVolume,
+          harvest_frequency: formData.harvestFrequency,
+          delivery_capability: formData.deliveryCapability,
+          delivery_radius: formData.deliveryRadius || null,
+          available_days: formData.availableDays,
+        });
+
+        if (farmerError) throw farmerError;
+      } else {
+        const { error: recipientError } = await supabase
+          .from("recipients")
+          .insert({
+            profile_id: profile.id,
+            organization_type: formData.organizationType,
+            people_served_weekly: formData.peopleServedWeekly,
+            urgency_level: formData.urgencyLevel.split(" - ")[0],
+            needed_food_types: formData.neededFoodTypes,
+            dietary_restrictions: formData.dietaryRestrictions,
+            refrigeration_available: formData.refrigerationAvailable,
+            storage_capacity: formData.storageCapacity,
+            transportation_available: formData.transportationAvailable,
+            pickup_radius: formData.pickupRadius || null,
+            preferred_delivery_days: formData.preferredDeliveryDays,
+          });
+
+        if (recipientError) throw recipientError;
+      }
+
+      // Success message
+      alert(
+        "Thank you for joining Open Doors! We will notify you when we find matches."
+      );
+
+      // Reset form
+      setUserType("");
+      setCurrentStep(0);
+      setFormData({
+        organizationName: "",
+        contactName: "",
+        email: "",
+        phone: "",
+        whatsapp: "",
+        location: null,
+        farmSize: "",
+        cropTypes: [],
+        organicCertified: false,
+        productionVolume: "",
+        harvestFrequency: "",
+        deliveryCapability: false,
+        deliveryRadius: "",
+        availableDays: [],
+        organizationType: "",
+        peopleServedWeekly: "",
+        urgencyLevel: "",
+        neededFoodTypes: [],
+        dietaryRestrictions: [],
+        refrigerationAvailable: false,
+        storageCapacity: "",
+        transportationAvailable: false,
+        pickupRadius: "",
+        preferredDeliveryDays: [],
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert(error.message || "An error occurred. Please try again.");
+    }
   };
 
   if (!userType) {
