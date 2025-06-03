@@ -32,8 +32,10 @@ const mapConfig = {
 const AddressInput = ({ label, value, onChange, required, error }) => {
   const autocompleteRef = useRef(null);
 
+  let googleMapsApiKey = import.meta.env.GOOGLE_MAPS_API_KEY;
+
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyDpkLgylaNxfvbPf_y3e0IgqCp-WAKcpaA",
+    googleMapsApiKey,
     libraries: ["places"],
   });
 
