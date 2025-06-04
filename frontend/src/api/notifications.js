@@ -225,7 +225,8 @@ export async function sendTestNotification(phoneNumber) {
       },
       body: JSON.stringify({
         phoneNumber,
-        message: "This is a test notification from the Food Connect platform!",
+        message:
+          "This is a test notification from the Open Doors Platform. Backend is working yay",
         type: "sms",
       }),
     });
