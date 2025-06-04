@@ -4,6 +4,10 @@ import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
+import BecomePartner from "./pages/BecomePartner";
+import Team from "./pages/Team";
+import PlatformTest from "./components/PlatformTest";
+
 function App() {
   return (
     <Layout>
@@ -12,6 +16,9 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/partners" element={<Partners />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/BecomePartner" element={<BecomePartner />} />
+        <Route path="/Team" element={<Team />} />
+        <Route path="/platform-test" element={<PlatformTest />} />
       </Routes>
     </Layout>
   );

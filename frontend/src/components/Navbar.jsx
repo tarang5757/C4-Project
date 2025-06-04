@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import logo from '../../public/Logo.png'; // adjust path as needed
+import logo from "../../public/Logo.png"; // adjust path as needed
 
 const Navbar = () => {
   const location = useLocation();
@@ -12,8 +12,7 @@ const Navbar = () => {
     { name: "About Us", path: "/AboutUs" },
     { name: "Meet The team", path: "/Team" },
     { name: "Partners", path: "/partners" },
-    { name: "Resources", path: "/resources" },
-    { name: "BecomePartner", path: "/BecomePartner" }
+    { name: "BecomePartner", path: "/BecomePartner" },
   ];
 
   // Helper to check if the current path is active

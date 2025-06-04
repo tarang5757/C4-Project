@@ -12,7 +12,7 @@ const Home = () => {
         <div
           className="relative min-h-screen bg-cover bg-center"
           style={{
-            backgroundImage: "url('/opening_Image.jpg')",
+            backgroundImage: "url('/landscape.jpg')",
             backgroundPosition: "center center",
             backgroundSize: "cover",
           }}
