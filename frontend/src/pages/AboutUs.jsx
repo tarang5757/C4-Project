@@ -24,17 +24,7 @@ const AboutUs = () => {
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
           <div className="max-w-2xl mx-auto text-center space-y-6">
-            <p className="text-gray-700 leading-relaxed text-lg">
-              It all started when we saw farmers having to throw away perfectly
-              good food while people in our community were going hungry. We knew
-              there had to be a better way.
-            </p>
-            <p className="text-gray-700 leading-relaxed text-lg">
-              Today, we're working to make it easy for anyone to share food with
-              their neighbors. Whether you're a farmer with extra produce or
-              someone who wants to help feed your community, we're here to make
-              it happen.
-            </p>
+            <p className="text-gray-700 leading-relaxed text-lg"> Our story starts with C4 at York University, a place where we create projects that go beyond the classroom and have a real impact on the community. It was here that we recognized the growing challenges of food insecurity and nutrition, and knew we needed to take action. </p> <p className="text-gray-700 leading-relaxed text-lg"> Today, we're working to make it easy for anyone to contribute to solving the food insecurity problem. Whether you're a farmer with extra produce or simply someone who wants to help nourish your community, we're here to make that connection happen. </p>
           </div>
         </div>
       </section>
@@ -48,32 +38,8 @@ const AboutUs = () => {
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
+          
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-[#4CAF50] mb-4">
-                <svg
-                  className="w-12 h-12"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Take Care of Our Planet
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                We believe in doing our part to keep our planet healthy. By
-                sharing food instead of wasting it, we're helping to take care
-                of the earth for future generations.
-              </p>
-            </div>
             <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-[#4CAF50] mb-4">
                 <svg
@@ -99,6 +65,33 @@ const AboutUs = () => {
                 everyone feels welcome and cared for.
               </p>
             </div>
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              
+              <div className="text-[#4CAF50] mb-4">
+                <svg
+                  className="w-12 h-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Take Care of Our Planet
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                We believe in doing our part to keep our planet healthy. By
+                sharing food instead of wasting it, we're helping to take care
+                of the earth for future generations.
+              </p>
+            </div>
+            
             <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-[#4CAF50] mb-4">
                 <svg
