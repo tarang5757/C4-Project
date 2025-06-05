@@ -59,7 +59,7 @@ const Partners = () => {
               <img
                 src="/Help.png"
                 alt="Our Team"
-                className="w-30 h-auto rounded-2xl shadow-lg mt-10 mb-5"
+                className="w-3/4 rounded-2xl shadow-lg mt-10 mb-5"
               />
             </div>
           </div>

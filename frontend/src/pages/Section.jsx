@@ -1,25 +1,49 @@
 import React from "react";
 
-// Data
+// Data with official website URLs
 const peopleData = [
-  { id: 1, title: "Title 1", desc1: "Description 1", desc2: "Description 2" },
-  { id: 2, title: "Title 2", desc1: "Description 3", desc2: "Description 4" },
-  { id: 3, title: "Title 3", desc1: "Description 5", desc2: "Description 6" },
-  { id: 4, title: "Title 4", desc1: "Description 7", desc2: "Description 8" },
-  { id: 5, title: "Title 5", desc1: "Description 9", desc2: "Description 10" },
-  { id: 6, title: "Title 6", desc1: "Description 11", desc2: "Description 12" },
+  { 
+    id: 1, 
+    title: "North York Harvest", 
+    desc1: "Food Bank & Community Services", 
+    desc2: "Provides perishable and non-perishable food; works with multiple sites for fresh food donations.",
+    link: "https://www.northyorkharvest.com" // Add the official link
+  },
+  { 
+    id: 2, 
+    title: "Feed Ontario", 
+    desc1: "Food Security Network", 
+    desc2: "Coordinates food donations for member food banks; does not handle direct pickups.",
+    link: "https://www.feedontario.ca" // Add the official link
+  },
+  { 
+    id: 3, 
+    title: "Fred Victor", 
+    desc1: "Shelter & Community Outreach", 
+    desc2: "Accepts non-perishable food donations and occasionally fresh; provides support for people experiencing homelessness.",
+    link: "https://www.fredvictor.org" // Add the official link
+  },
+  { 
+    id: 4, 
+    title: "Second Harvest", 
+    desc1: "Food Rescue Organization", 
+    desc2: "Prioritizes protein, dairy, and shelf-stable produce; uses own trucks for food rescue operations.",
+    link: "https://www.secondharvest.ca" // Add the official link
+  }
 ];
 
 // Card Component
-const Card = ({ title, desc1, desc2 }) => (
+const Card = ({ title, desc1, desc2, link }) => (
   <div className="bg-white rounded-2xl p-6 text-center shadow-lg w-full max-w-[220px] transition-transform transform hover:scale-105 hover:shadow-xl">
     <div className="w-20 h-20 rounded-full bg-gray-300 mx-auto mb-4" />
     <h3 className="text-lg font-semibold mb-2">{title}</h3>
     <p className="text-sm text-gray-700">{desc1}</p>
     <p className="text-sm text-gray-700 mt-2">{desc2}</p>
-    <button className="mt-4 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
-      Learn more
-    </button>
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      <button className="mt-4 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
+        Learn More
+      </button>
+    </a>
   </div>
 );
 
@@ -30,8 +54,7 @@ const Section = ({ heading, numCards }) => {
   const totalContentHeight = numCards * cardHeight + 150; // Added more margin
 
   return (
-          <section className="bg-gradient-to-r from-[#ffb6b9] via-[#ff8f8f] to-[#ff7070] text-black flex flex-col items-center justify-center px-4 py-10 " >
-
+    <section className="bg-gradient-to-r from-[#ffb6b9] via-[#ff8f8f] to-[#ff7070] text-black flex flex-col items-center justify-center px-4 py-10">
       {/* Heading */}
       <h1 className="text-4xl font-serif italic text-white mb-6">{heading}</h1>
 
@@ -49,6 +72,7 @@ const Section = ({ heading, numCards }) => {
               title={person.title}
               desc1={person.desc1}
               desc2={person.desc2}
+              link={person.link}
             />
           ))}
         </div>
@@ -57,7 +81,7 @@ const Section = ({ heading, numCards }) => {
       {/* Button */}
       <div className="w-full flex justify-center">
         <button className="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
-          See More
+          Join the cause
         </button>
       </div>
     </section>
