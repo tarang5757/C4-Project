@@ -1,4 +1,3 @@
-// Section.js
 import React from "react";
 
 // Data
@@ -13,40 +12,57 @@ const peopleData = [
 
 // Card Component
 const Card = ({ title, desc1, desc2 }) => (
-  <div className="bg-white rounded-2xl p-4 text-center shadow-md w-full max-w-[180px]">
-    <div className="w-16 h-16 rounded-full bg-gray-300 mx-auto mb-3" />
-    <h3 className="font-semibold mb-1">{title}</h3>
-    <p className="text-sm">{desc1}</p>
-    <p className="text-sm mt-2">{desc2}</p>
-    <button className="mt-4 bg-yellow-400 text-black px-3 py-1 rounded text-sm hover:bg-yellow-500 transition">
+  <div className="bg-white rounded-2xl p-6 text-center shadow-lg w-full max-w-[220px] transition-transform transform hover:scale-105 hover:shadow-xl">
+    <div className="w-20 h-20 rounded-full bg-gray-300 mx-auto mb-4" />
+    <h3 className="text-lg font-semibold mb-2">{title}</h3>
+    <p className="text-sm text-gray-700">{desc1}</p>
+    <p className="text-sm text-gray-700 mt-2">{desc2}</p>
+    <button className="mt-4 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
       Learn more
     </button>
   </div>
 );
 
 // Section Component
-const Section = ({ heading, numCards }) => (
-  <div className="bg-peach px-6 py-10 text-black min-h-screen flex flex-col items-center">
-    <h1 className="text-4xl italic font-serif mb-2">{heading}</h1>
-    <p className="mb-8 text-center text-sm">
-      We wouldn't be where we are without your support and collaboration.
-    </p>
-    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mb-6">
-      {peopleData.slice(0, numCards).map((person) => (
-        <Card
-          key={person.id}
-          title={person.title}
-          desc1={person.desc1}
-          desc2={person.desc2}
-        />
-      ))}
-    </div>
-    <button className="bg-yellow-400 text-black px-5 py-2 rounded text-sm hover:bg-yellow-500 transition">
-      See More
-    </button>
-  </div>
-);
+const Section = ({ heading, numCards }) => {
+  // Calculate the height of the section based on the number of cards
+  const cardHeight = 280; // Adjusted card height for better spacing
+  const totalContentHeight = numCards * cardHeight + 150; // Added more margin
 
+  return (
+          <section className="bg-gradient-to-r from-[#ffb6b9] via-[#ff8f8f] to-[#ff7070] text-black flex flex-col items-center justify-center px-4 py-10 " >
+
+      {/* Heading */}
+      <h1 className="text-4xl font-serif italic text-white mb-6">{heading}</h1>
+
+      {/* Description */}
+      <p className="text-center text-lg text-white max-w-3xl mb-10">
+        We wouldn't be where we are without your support and collaboration.
+      </p>
+
+      {/* Cards Grid */}
+      <div className="flex justify-center items-center w-full mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl">
+          {peopleData.slice(0, numCards).map((person) => (
+            <Card
+              key={person.id}
+              title={person.title}
+              desc1={person.desc1}
+              desc2={person.desc2}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Button */}
+      <div className="w-full flex justify-center">
+        <button className="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
+          See More
+        </button>
+      </div>
+    </section>
+  );
+};
 
 // Export Section component
 export default Section;

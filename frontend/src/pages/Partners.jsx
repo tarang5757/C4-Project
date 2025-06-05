@@ -160,7 +160,7 @@ const Partners = () => {
       </section>
       
       {/* Now include the Section component here */}
-      <Section heading={"Intrested"} numCards={3} />
+      <Section heading={"Intrested Parties"} numCards={4} />
     </div>
   );
 };
