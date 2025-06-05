@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import QuestionnaireForm from "../components/QuestionnaireForm";
-
+import Overview from "../components/steps/Overview";
 const Home = () => {
   return (
     <div className="space-y-0">
@@ -64,6 +64,10 @@ const Home = () => {
              </div>
 
         </div>
+      </section>
+      {/* how we do it */}
+      <section className="py-10 px-4 ">
+      {<Overview/>}
       </section>
 
       {/* Why We Care Section */}
@@ -147,7 +151,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+        
       {/* Call to Action */}
       <section className="py-8 px-6 text-center" style={{ backgroundColor: '#F0F3F3' }}>
         <div className="max-w-4xl mx-auto">
