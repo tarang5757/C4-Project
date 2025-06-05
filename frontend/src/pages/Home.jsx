@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import QuestionnaireForm from "../components/QuestionnaireForm";
 import Overview from "../components/steps/Overview";
+import PartnerSection from "./PartnerSection";
+
 const Home = () => {
   return (
     <div className="space-y-0">
@@ -217,7 +219,14 @@ const Home = () => {
           </div>
         </div>
       </section>
-        
+      
+      {/* Now include the Section component here */}
+      <PartnerSection heading={"Intrested Parties"} 
+      numCards={4} 
+      buttonText="See More"  // Custom text for page 2
+      buttonLink="/partners"  // Custom link for page 2 
+      />
+
       {/* Call to Action */}
       <section
         className="py-8 px-6 text-center "

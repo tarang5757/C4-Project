@@ -33,6 +33,30 @@ const peopleData = [
     desc2: "Prioritizes protein, dairy, and shelf-stable produce; uses own trucks for food rescue operations.",
     link: "https://www.secondharvest.ca",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9x3gDlxuca5DnICE3D91re4f_BmIuioIeow&s" // Example image link
+  },
+  //  {
+  //   "id": 5,
+  //   "title": "Lorraine Lam",
+  //   "desc1": "Shelter and Housing Justice Network",
+  //   "desc2": "Supporting equitable housing initiatives and policies for marginalized groups.",
+  //   "link": "mailto:Lorr.lam07@gmail.com",
+  //   "image": "https://ca.images.search.yahoo.com/search/images?p=Lorraine+Lam&fr=mcafee&type=E210CA91166G0&imgurl=https%3A%2F%2Fomssa.com%2Fphotos%2FLorraine_Lam_11032023101930.PNG#id=2&iurl=https%3A%2F%2Fomssa.com%2Fphotos%2FLorraine_Lam_11032023101930.PNG&action=click"
+  // },
+  // {
+  //   "id": 6,
+  //   "title": "Anna Willats",
+  //   "desc1": "Retired - George Brown College",
+  //   "desc2": "Educator with a focus on social justice and youth services.",
+  //   "link": "mailto:awillats@sympatico.ca",
+  //   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9x3gDlxuca5DnICE3D91re4f_BmIuioIeow&s"
+  // },
+  // {
+    "id": 7,
+    "title": "Natalie Fingerhut",
+    "desc1": "Ve’ahavta and St Luke’s Meal Program",
+    "desc2": "Providing meals and support services to those experiencing homelessness.",
+    "link": "mailto:nataliefingerhut@gmail.com",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9x3gDlxuca5DnICE3D91re4f_BmIuioIeow&s"
   }
 ];
 
@@ -56,7 +80,7 @@ const Card = ({ title, desc1, desc2, link, image }) => (
 );
 
 // Section Component
-const Section = ({ heading, numCards }) => {
+const PartnerSection = ({ heading, numCards, buttonText, buttonLink }) => {
   // Calculate the height of the section based on the number of cards
   const cardHeight = 280; // Adjusted card height for better spacing
   const totalContentHeight = numCards * cardHeight + 150; // Added more margin
@@ -89,13 +113,15 @@ const Section = ({ heading, numCards }) => {
 
       {/* Button */}
       <div className="w-full flex justify-center">
-        <button className="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
-          Join the cause
-        </button>
+        <a href={buttonLink} target="_blank" rel="noopener noreferrer">
+          <button className="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
+            {buttonText || "Join the cause"} {/* Default button text if not provided */}
+          </button>
+        </a>
       </div>
     </section>
   );
 };
 
 // Export Section component
-export default Section;
+export default PartnerSection;

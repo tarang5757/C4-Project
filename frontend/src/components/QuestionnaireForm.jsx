@@ -657,7 +657,7 @@ const QuestionnaireForm = () => {
               </div>
               <div className="text-left">
                 <h3 className="font-semibold text-gray-900 text-lg">
-                  Food Bank / Organization
+                  Local Initiative
                 </h3>
                 <p className="text-sm text-gray-600">
                   We need fresh food to nourish our community.

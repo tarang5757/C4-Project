@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Section from "./Section";
+import PartnerSection from "./PartnerSection";
 
 const Partners = () => {
   // Define the heading and number of cards to pass to Section
@@ -9,6 +9,7 @@ const Partners = () => {
   
   return (
     <div className="min-h-screen bg-gray-50">
+      
       <div className="relative min-h-screen overflow-hidden">
         {/* Background with Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
@@ -45,6 +46,13 @@ const Partners = () => {
           </div>
         </div>
       </div>
+
+      {/* Now include the Section component here */}
+      <PartnerSection heading={"Intrested Parties"} 
+      numCards={7} 
+      buttonText="Koin the cause"  // Custom text for page 2
+      buttonLink="https://www.example.com/donate-now"  // Custom link for page 2 
+      />
 
       {/* Partnership Impact Section */}
       <section className="py-10 px-4 bg-white">
@@ -159,8 +167,10 @@ const Partners = () => {
         </div>
       </section>
       
-      {/* Now include the Section component here */}
-      <Section heading={"Intrested Parties"} numCards={4} />
+      
+
+      
+
     </div>
   );
 };
