@@ -1,9 +1,11 @@
 import React from "react";
-
+import ForDonors from "../../components/steps/ForDonors";
 const FarmerMarket = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Farmer Markets & Local Farmers</h1>
+      {<ForDonors/>}
+
+      <h1 className="text-3xl font-bold mt-16 mb-4">Farmer Markets & Local Farmers</h1>
 
       <p className="mb-4 text-lg">
         Farmer markets and local farmers provide fresh, healthy produce directly to the community.

@@ -1,9 +1,10 @@
 import React from "react";
-
+import ForRecipients from "../../components/steps/ForRecipients";
 const SheltersFoodBanks = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Toronto Shelters, Food Banks & Soup Kitchens</h1>
+      {<ForRecipients/>}
+      <h1 className="text-3xl font-bold mt-16 mb-4">Toronto Shelters, Food Banks & Soup Kitchens</h1>
 
       <p className="mb-4 text-lg">
         Toronto is home to many incredible organizations dedicated to helping individuals and families experiencing homelessness or food insecurity. Below is a list of resources to help you find shelters, food banks, and soup kitchens in the city.
