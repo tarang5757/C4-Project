@@ -7,17 +7,31 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false); // for desktop dropdown
   const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false); // for mobile dropdown
+  const [closeTimeout, setCloseTimeout] = useState(null);
 
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/AboutUs" },
     { name: "Meet The team", path: "/Team" },
     { name: "Partners", path: "/partners" },
-    // Resources will have a dropdown, so no direct path here
     { name: "BecomePartner", path: "/BecomePartner" }
   ];
 
   const isActive = (path) => location.pathname === path;
+
+  const handleMouseEnter = () => {
+    if (closeTimeout) {
+      clearTimeout(closeTimeout); // Clear any existing timeouts if the mouse enters again.
+    }
+    setIsResourcesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsResourcesOpen(false); // Close dropdown after a delay (e.g., 500ms)
+    }, 50);
+    setCloseTimeout(timeout);
+  };
 
   return (
     <nav className="bg-white shadow-lg relative z-30">
@@ -58,8 +72,8 @@ const Navbar = () => {
             {/* Resources Dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setIsResourcesOpen(true)}
-              onMouseLeave={() => setIsResourcesOpen(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <button
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
