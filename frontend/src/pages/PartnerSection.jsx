@@ -50,7 +50,7 @@ const peopleData = [
   //   "link": "mailto:awillats@sympatico.ca",
   //   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9x3gDlxuca5DnICE3D91re4f_BmIuioIeow&s"
   // },
-  // {
+  {
     "id": 7,
     "title": "Natalie Fingerhut",
     "desc1": "Ve’ahavta and St Luke’s Meal Program",
