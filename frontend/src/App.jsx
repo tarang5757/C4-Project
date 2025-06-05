@@ -8,6 +8,11 @@ import BecomePartner from "./pages/BecomePartner";
 import Team from "./pages/Team";
 import PlatformTest from "./components/PlatformTest";
 
+
+// You can create these pages/components to match your new routes
+import FarmerMarket from "./pages/resources/FarmerMarket";
+import SheltersFoodBanks from "./pages/resources/SheltersFoodBanks";
+
 function App() {
   return (
     <Layout>
@@ -19,6 +24,10 @@ function App() {
         <Route path="/BecomePartner" element={<BecomePartner />} />
         <Route path="/Team" element={<Team />} />
         <Route path="/platform-test" element={<PlatformTest />} />
+
+        {/* New resource routes */}
+        <Route path="/resources/farmer-market" element={<FarmerMarket />} />
+        <Route path="/resources/shelters-food-banks" element={<SheltersFoodBanks />} />
       </Routes>
     </Layout>
   );
