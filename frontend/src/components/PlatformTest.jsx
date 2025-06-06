@@ -26,44 +26,16 @@ const PlatformTest = () => {
   // Fetch available farmers and recipients on component mount
   useEffect(() => {
     async function fetchData() {
-      console.log("Starting data fetch...");
-
       // First, let's check the raw profiles table with more detailed logging
       const { data: allProfiles, error: allProfilesError } = await supabase
         .from("profiles")
         .select("*")
         .order("created_at", { ascending: false });
 
-      console.log("=== DEBUG: All Profiles ===");
-      console.log("Total profiles found:", allProfiles?.length || 0);
-      if (allProfiles) {
-        allProfiles.forEach((profile) => {
-          console.log(`Profile: ${profile.organization_name}`, {
-            id: profile.id,
-            user_type: profile.user_type,
-            created_at: profile.created_at,
-          });
-        });
-      }
-      console.log("Profiles error:", allProfilesError);
-
       // Check the recipients table directly with more detailed logging
       const { data: allRecipients, error: allRecipientsError } = await supabase
         .from("recipients")
         .select("*");
-
-      console.log("=== DEBUG: All Recipients ===");
-      console.log("Total recipients found:", allRecipients?.length || 0);
-      if (allRecipients) {
-        allRecipients.forEach((recipient) => {
-          console.log(`Recipient record:`, {
-            id: recipient.id,
-            profile_id: recipient.profile_id,
-            status: recipient.status,
-          });
-        });
-      }
-      console.log("Recipients error:", allRecipientsError);
 
       // Fetch all profiles with user_type recipient or organization
       const { data: recipientProfiles, error: recipientProfilesError } =
@@ -82,26 +54,11 @@ const PlatformTest = () => {
           .eq("user_type", "recipient")
           .order("created_at", { ascending: false });
 
-      console.log("=== DEBUG: Recipient Profiles Only ===");
-      console.log("Query result:", {
-        recipientProfiles,
-        recipientProfilesError,
-      });
-
       if (recipientProfilesError) {
-        console.error(
-          "Error fetching recipient profiles:",
-          recipientProfilesError
-        );
         // Do not return here, continue to process even if profile fetch failed
       }
 
       if (recipientProfiles) {
-        console.log(
-          "Total recipient profiles found:",
-          recipientProfiles.length
-        );
-
         const profilesNeedingRecipients = [];
         const validRecipients = [];
 
@@ -124,44 +81,23 @@ const PlatformTest = () => {
             recipientRecordError.code !== "PGRST116"
           ) {
             // PGRST116 means no row found
-            console.error(
-              `Error fetching recipient record for profile ${profile.id}:`,
-              recipientRecordError
-            );
             continue; // Skip this profile if there's a real error
           }
 
           if (recipientRecord) {
-            console.log(
-              `Profile ${profile.id} (${profile.organization_name}) HAS recipient record:`,
-              recipientRecord
-            );
             validRecipients.push({ ...profile, recipients: [recipientRecord] });
           } else {
-            console.log(
-              `Profile ${profile.id} (${profile.organization_name}) NEEDS recipient record`
-            );
             profilesNeedingRecipients.push(profile);
           }
         }
 
-        console.log("Profiles needing recipients:", profilesNeedingRecipients);
         setProfilesWithoutRecipients(profilesNeedingRecipients);
 
-        console.log("Valid recipients after check:", validRecipients);
         setRecipients(validRecipients);
 
         if (validRecipients.length > 0) {
-          console.log(
-            "Setting selected recipient ID to:",
-            validRecipients[0].recipients[0].id
-          );
           setSelectedRecipientId(validRecipients[0].recipients[0].id);
-        } else {
-          console.log("No valid recipients found after check");
         }
-      } else {
-        console.log("No recipient profile data found initially");
       }
 
       // Fetch farmers with their relationships
@@ -181,14 +117,10 @@ const PlatformTest = () => {
         .eq("user_type", "farmer")
         .order("created_at", { ascending: false });
 
-      console.log("=== DEBUG: Farmer Query ===");
-      console.log("Query result:", { farmerData, farmerError });
-
       if (!farmerError && farmerData) {
         const validFarmers = farmerData.filter(
           (profile) => profile.farmers && profile.farmers.length > 0
         );
-        console.log("Valid farmers after filter:", validFarmers);
         setFarmers(validFarmers);
         if (validFarmers.length > 0) {
           setFarmerId(validFarmers[0].farmers[0].id);
@@ -200,15 +132,14 @@ const PlatformTest = () => {
 
   const runTest = async (testName, testFn) => {
     setLoading(true);
+    setTestResults({});
     try {
       const result = await testFn();
-      console.log(`Test ${testName} result:`, result);
       setTestResults((prev) => ({
         ...prev,
         [testName]: { success: true, result },
       }));
     } catch (error) {
-      console.error(`Test ${testName} failed:`, error);
       setTestResults((prev) => ({
         ...prev,
         [testName]: { success: false, error: error.message },
@@ -256,12 +187,47 @@ const PlatformTest = () => {
     };
   };
 
+  // Function to find potential matches for a single selected farmer
   const testMatchingSystem = async () => {
     if (!farmerId) {
       throw new Error("Please select a farmer first");
     }
     const matches = await findMatches(farmerId);
     return matches;
+  };
+
+  // Function to find potential matches for all active farmers
+  const testFindAllPotentialMatches = async () => {
+    // Fetch all active farmers
+    const { data: farmers, error: farmersError } = await supabase
+      .from("farmers")
+      .select("id")
+      .eq("active", true);
+
+    if (farmersError) throw farmersError;
+    if (!farmers || farmers.length === 0) {
+      console.log("No active farmers found for potential match test.");
+      return []; // Return empty array if no active farmers
+    }
+
+    let allPotentialMatches = [];
+
+    // For each active farmer, find potential matches
+    for (const farmer of farmers) {
+      try {
+        // Use findMatches function which already handles finding matches against all recipients
+        const potentialMatches = await findMatches(farmer.id);
+        allPotentialMatches = [...allPotentialMatches, ...potentialMatches];
+      } catch (error) {
+        // Decide how to handle errors for individual farmers - log and continue or stop?
+        // For now, we'll log the error and continue with the next farmer.
+      }
+    }
+
+    // Sort combined matches by score descending
+    allPotentialMatches.sort((a, b) => b.match_score - a.match_score);
+
+    return allPotentialMatches;
   };
 
   const testCreateMatch = async () => {
@@ -309,11 +275,72 @@ const PlatformTest = () => {
     return matches;
   };
 
+  const testMatchAlgorithm = async () => {
+    try {
+      setLoading(true);
+      const results = {
+        totalFarmers: 0,
+        totalRecipients: 0,
+        matchesFound: 0,
+        matchesCreated: 0,
+        errors: [],
+      };
+
+      // Get all farmers
+      const { data: farmers, error: farmersError } = await supabase
+        .from("farmers")
+        .select("id, active, profile:profiles!inner(*)")
+        .eq("active", true);
+
+      if (farmersError) throw farmersError;
+      results.totalFarmers = farmers.length;
+
+      // Get all active recipients
+      const { data: recipients, error: recipientsError } = await supabase
+        .from("recipients")
+        .select("id, active, profile:profiles!inner(*)")
+        .eq("active", true);
+
+      if (recipientsError) throw recipientsError;
+      results.totalRecipients = recipients.length;
+
+      // For each farmer, find matches with all recipients
+      for (const farmer of farmers) {
+        try {
+          const potentialMatches = await findMatches(farmer.id);
+          results.matchesFound += potentialMatches.length;
+
+          // Create matches for scores > 50
+          for (const match of potentialMatches) {
+            if (match.match_score >= 50) {
+              await createMatch(
+                farmer.id,
+                match.recipient_id,
+                match.match_score,
+                match.match_reasons
+              );
+              results.matchesCreated++;
+            }
+          }
+        } catch (error) {
+          results.errors.push(
+            `Error processing farmer ${farmer.id}: ${error.message}`
+          );
+        }
+      }
+
+      return results;
+    } catch (error) {
+      throw new Error(`Match algorithm test failed: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleCreateRecipient = async (profileId) => {
     try {
       setLoading(true);
       const recipient = await createRecipientRecord(profileId);
-      console.log("Created recipient record:", recipient);
 
       // Refresh the data
       const { data: recipientData } = await supabase
@@ -350,7 +377,6 @@ const PlatformTest = () => {
         setProfilesWithoutRecipients(profilesNeedingRecipients);
       }
     } catch (error) {
-      console.error("Error creating recipient record:", error);
       setTestResults((prev) => ({
         ...prev,
         createRecipient: { success: false, error: error.message },
@@ -365,46 +391,43 @@ const PlatformTest = () => {
       !window.confirm(
         "Are you sure you want to delete ALL matches? This action cannot be undone."
       )
-    ) {
+    )
       return;
-    }
 
     setLoading(true);
     setDeleteStatus(null);
 
     try {
-      // First get all match IDs
-      const { data: matches, error: fetchError } = await supabase
+      const { error: deleteError } = await supabase
+        .from("matches")
+        .delete()
+        .not("id", "is", null);
+
+      if (deleteError) throw deleteError;
+
+      const { data: remaining, error: verifyError } = await supabase
         .from("matches")
         .select("id");
 
-      if (fetchError) throw fetchError;
+      if (verifyError) throw verifyError;
 
-      if (matches && matches.length > 0) {
-        // Delete each match by ID
-        const { error: deleteError } = await supabase
-          .from("matches")
-          .delete()
-          .in(
-            "id",
-            matches.map((m) => m.id)
-          );
-
-        if (deleteError) throw deleteError;
+      if (remaining.length > 0) {
+        throw new Error(
+          `Failed to delete all matches. ${remaining.length} matches still exist.`
+        );
       }
 
       setDeleteStatus({
         success: true,
-        message: `Successfully deleted ${matches?.length || 0} matches`,
+        message: `Successfully deleted all matches.`,
       });
-      // Refresh active matches display
       setActiveMatches([]);
     } catch (error) {
-      console.error("Error deleting matches:", error);
       setDeleteStatus({
         success: false,
-        error: error.message || "Failed to delete matches",
+        error: error.message || "Failed to delete matches.",
       });
+      console.error("Delete error:", error);
     } finally {
       setLoading(false);
     }
@@ -516,10 +539,26 @@ const PlatformTest = () => {
           )}
         </div>
 
+        {/* Test Match Algorithm Button */}
+        <div className="mb-4">
+          <button
+            onClick={() => runTest("matchAlgorithm", testMatchAlgorithm)}
+            disabled={loading}
+            className="w-full px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 disabled:bg-gray-400"
+          >
+            Run System-Wide Matching
+          </button>
+          <p className="text-sm text-gray-600 mt-1">
+            Automatically finds and creates matches between all active farmers
+            and recipients. Creates matches for scores ≥ 50. Use this to test
+            the entire matching system at once.
+          </p>
+        </div>
+
         {/* Farmer Selection */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Select Farmer ({farmers.length} available)
+            Select Farmer to Test ({farmers.length} available)
           </label>
           <select
             value={farmerId}
@@ -537,7 +576,7 @@ const PlatformTest = () => {
         {/* Recipient Selection */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Select Recipient ({recipients.length} available)
+            Select Recipient to Test ({recipients.length} available)
           </label>
           <select
             value={selectedRecipientId}
@@ -562,31 +601,90 @@ const PlatformTest = () => {
           </select>
         </div>
 
-        {/* Matching Test Buttons */}
+        {/* Individual Matching Test Buttons */}
         <div className="space-y-2">
           <button
-            onClick={() => runTest("findMatches", testMatchingSystem)}
+            onClick={() => runTest("findMatchesSelected", testMatchingSystem)}
             disabled={loading || !farmerId}
             className="w-full px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 disabled:bg-gray-400"
           >
-            Find Potential Matches
+            Find Potential Matches for Selected Farmer
           </button>
+          <p className="text-sm text-gray-600 mt-1">
+            Shows all potential matches for the selected farmer, sorted by match
+            score. This only displays matches, it doesn't create them.
+          </p>
+
+          {/* New button for finding potential matches for all farmers */}
+          <button
+            onClick={() =>
+              runTest("findAllMatches", testFindAllPotentialMatches)
+            }
+            disabled={loading}
+            className="w-full px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 disabled:bg-gray-400"
+          >
+            Find Potential Matches (All Farmers)
+          </button>
+          <p className="text-sm text-gray-600 mt-1">
+            Shows all potential matches found across all active farmers, sorted
+            by match score. This only displays matches, it doesn't create them.
+          </p>
 
           <button
             onClick={() => runTest("createMatch", testCreateMatch)}
             disabled={loading || !farmerId || !selectedRecipientId}
             className="w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:bg-gray-400"
           >
-            Create Match
+            Create Single Match
           </button>
+          <p className="text-sm text-gray-600 mt-1">
+            Creates a match between the selected farmer and recipient if their
+            match score is ≥ 50. Use this to test specific farmer-recipient
+            pairs.
+          </p>
 
           <button
             onClick={() => runTest("getActiveMatches", testGetActiveMatches)}
             disabled={loading || !farmerId}
             className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400"
           >
-            Get Active Matches
+            View Active Matches
           </button>
+          <p className="text-sm text-gray-600 mt-1">
+            Shows all active (pending or accepted) matches for the selected
+            farmer. You can accept or reject matches from this view.
+          </p>
+        </div>
+
+        {/* Danger Zone */}
+        <div className="mb-6 p-4 border border-red-200 rounded-lg bg-red-50">
+          <h3 className="text-lg font-semibold text-red-700 mb-2">
+            Danger Zone
+          </h3>
+          <button
+            onClick={handleDeleteAllMatches}
+            disabled={loading}
+            className={`px-4 py-2 rounded-md text-white font-medium ${
+              loading
+                ? "bg-red-400 cursor-not-allowed"
+                : "bg-red-600 hover:bg-red-700"
+            }`}
+          >
+            {loading ? "Deleting..." : "Delete All Matches"}
+          </button>
+          {deleteStatus && (
+            <div
+              className={`mt-2 text-sm ${
+                deleteStatus.success ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {deleteStatus.success ? deleteStatus.message : deleteStatus.error}
+            </div>
+          )}
+          <p className="mt-2 text-sm text-red-600">
+            Warning: This will permanently delete all matches in the database.
+            Use this to reset the matching system for testing.
+          </p>
         </div>
 
         {/* Active Matches Display */}
@@ -630,34 +728,6 @@ const PlatformTest = () => {
         )}
       </div>
 
-      {/* Add this before the Test Results section */}
-      <div className="mb-6 p-4 border border-red-200 rounded-lg bg-red-50">
-        <h3 className="text-lg font-semibold text-red-700 mb-2">Danger Zone</h3>
-        <button
-          onClick={handleDeleteAllMatches}
-          disabled={loading}
-          className={`px-4 py-2 rounded-md text-white font-medium ${
-            loading
-              ? "bg-red-400 cursor-not-allowed"
-              : "bg-red-600 hover:bg-red-700"
-          }`}
-        >
-          {loading ? "Deleting..." : "Delete All Matches"}
-        </button>
-        {deleteStatus && (
-          <div
-            className={`mt-2 text-sm ${
-              deleteStatus.success ? "text-green-600" : "text-red-600"
-            }`}
-          >
-            {deleteStatus.success ? deleteStatus.message : deleteStatus.error}
-          </div>
-        )}
-        <p className="mt-2 text-sm text-red-600">
-          Warning: This will permanently delete all matches in the database.
-        </p>
-      </div>
-
       {/* Test Results */}
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">Test Results</h2>
@@ -675,9 +745,244 @@ const PlatformTest = () => {
                 {testName.replace(/([A-Z])/g, " $1").trim()}
               </h3>
               {result.success ? (
-                <pre className="mt-2 text-sm overflow-x-auto">
-                  {JSON.stringify(result.result, null, 2)}
-                </pre>
+                testName === "findMatchesSelected" ||
+                testName === "findAllMatches" ? (
+                  <div className="mt-4 space-y-6">
+                    {result.result.map((match, index) => (
+                      <div
+                        key={index}
+                        className="bg-white p-4 rounded-lg shadow-sm border border-gray-200"
+                      >
+                        {/* Match Score Header */}
+                        <div className="flex items-center justify-between mb-4 pb-2 border-b">
+                          <h4 className="text-lg font-semibold text-gray-800">
+                            Match #{index + 1} - {match.match_score}% Match
+                          </h4>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-medium ${
+                              match.match_score >= 50
+                                ? "bg-green-100 text-green-800"
+                                : "bg-yellow-100 text-yellow-800"
+                            }`}
+                          >
+                            {match.match_score >= 50
+                              ? "Good Match"
+                              : "Low Match"}
+                          </span>
+                        </div>
+
+                        {/* Match Details */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {/* Farmer Information */}
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <h5 className="font-semibold text-gray-700 mb-2">
+                              Farmer Details
+                            </h5>
+                            <div className="space-y-2">
+                              <p>
+                                <span className="font-medium">
+                                  Organization:
+                                </span>{" "}
+                                {match.farmer.organization_name}
+                              </p>
+                              <p>
+                                <span className="font-medium">Contact:</span>{" "}
+                                {match.farmer.contact_name}
+                              </p>
+                              <p>
+                                <span className="font-medium">Phone:</span>{" "}
+                                {match.farmer.phone}
+                              </p>
+                              <p>
+                                <span className="font-medium">Email:</span>{" "}
+                                {match.farmer.email}
+                              </p>
+                              {/* Farmer Address */}
+                              {(match.farmer.address ||
+                                match.farmer.city ||
+                                match.farmer.state ||
+                                match.farmer.zip_code) && (
+                                <div className="mt-2">
+                                  <p className="font-medium">Location:</p>
+                                  <p className="text-sm text-gray-700">
+                                    {[
+                                      match.farmer.address,
+                                      match.farmer.city,
+                                      match.farmer.state,
+                                      match.farmer.zip_code,
+                                    ]
+                                      .filter(Boolean)
+                                      .join(", ")}
+                                  </p>
+                                </div>
+                              )}
+                              <div className="mt-2">
+                                <p className="font-medium">Available Crops:</p>
+                                <div className="flex flex-wrap gap-2 mt-1">
+                                  {match.match_reasons.farmer_crops.map(
+                                    (crop, i) => (
+                                      <span
+                                        key={i}
+                                        className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                                      >
+                                        {crop}
+                                      </span>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Recipient Information */}
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <h5 className="font-semibold text-gray-700 mb-2">
+                              Recipient Details
+                            </h5>
+                            <div className="space-y-2">
+                              <p>
+                                <span className="font-medium">
+                                  Organization:
+                                </span>{" "}
+                                {match.recipient.organization_name}
+                              </p>
+                              <p>
+                                <span className="font-medium">Contact:</span>{" "}
+                                {match.recipient.contact_name}
+                              </p>
+                              <p>
+                                <span className="font-medium">Phone:</span>{" "}
+                                {match.recipient.phone}
+                              </p>
+                              <p>
+                                <span className="font-medium">Email:</span>{" "}
+                                {match.recipient.email}
+                              </p>
+                              {/* Recipient Address */}
+                              {(match.recipient.address ||
+                                match.recipient.city ||
+                                match.recipient.state ||
+                                match.recipient.zip_code) && (
+                                <div className="mt-2">
+                                  <p className="font-medium">Location:</p>
+                                  <p className="text-sm text-gray-700">
+                                    {[
+                                      match.recipient.address,
+                                      match.recipient.city,
+                                      match.recipient.state,
+                                      match.recipient.zip_code,
+                                    ]
+                                      .filter(Boolean)
+                                      .join(", ")}
+                                  </p>
+                                </div>
+                              )}
+                              <div className="mt-2">
+                                <p className="font-medium">Needed Foods:</p>
+                                <div className="flex flex-wrap gap-2 mt-1">
+                                  {match.match_reasons.needed_foods.map(
+                                    (food, i) => (
+                                      <span
+                                        key={i}
+                                        className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                                      >
+                                        {food}
+                                      </span>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Match Reasons */}
+                        <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                          <h5 className="font-semibold text-gray-700 mb-2">
+                            Why This Match Works
+                          </h5>
+                          <ul className="space-y-2">
+                            {match.match_reasons.reasons.map((reason, i) => (
+                              <li key={i} className="flex items-start">
+                                <span className="text-blue-500 mr-2">•</span>
+                                <span>{reason}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="mt-3 grid grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-sm font-medium text-gray-600">
+                                Distance
+                              </p>
+                              <p className="text-lg font-semibold">
+                                {match.match_reasons.distance} miles
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-gray-600">
+                                Urgency Level
+                              </p>
+                              <p
+                                className={`text-lg font-semibold ${
+                                  match.match_reasons.urgency_level === "High"
+                                    ? "text-red-600"
+                                    : "text-gray-800"
+                                }`}
+                              >
+                                {match.match_reasons.urgency_level}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Logistics Information */}
+                        <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                          <h5 className="font-semibold text-gray-700 mb-2">
+                            Logistics Details
+                          </h5>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-sm font-medium text-gray-600">
+                                Farmer Delivery
+                              </p>
+                              <p
+                                className={`font-semibold ${
+                                  match.match_reasons.farmer_delivery
+                                    ? "text-green-600"
+                                    : "text-gray-600"
+                                }`}
+                              >
+                                {match.match_reasons.farmer_delivery
+                                  ? "Available"
+                                  : "Not Available"}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-gray-600">
+                                Recipient Pickup
+                              </p>
+                              <p
+                                className={`font-semibold ${
+                                  match.match_reasons.recipient_pickup
+                                    ? "text-green-600"
+                                    : "text-gray-600"
+                                }`}
+                              >
+                                {match.match_reasons.recipient_pickup
+                                  ? "Available"
+                                  : "Not Available"}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <pre className="mt-2 text-sm overflow-x-auto">
+                    {JSON.stringify(result.result, null, 2)}
+                  </pre>
+                )
               ) : (
                 <p className="mt-2 text-sm text-red-600">{result.error}</p>
               )}

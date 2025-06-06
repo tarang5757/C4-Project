@@ -12,9 +12,9 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/AboutUs" },
-    { name: "Meet The team", path: "/Team" },
+    { name: "Meet The Team", path: "/Team" },
     { name: "Partners", path: "/partners" },
-    { name: "BecomePartner", path: "/BecomePartner" }
+    { name: "How Can I help?", path: "/BecomePartner" },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -151,7 +151,9 @@ const Navbar = () => {
               {/* Mobile Resources dropdown toggle */}
               <div>
                 <button
-                  onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
+                  onClick={() =>
+                    setIsMobileResourcesOpen(!isMobileResourcesOpen)
+                  }
                   className="w-full text-left py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:text-food-green-600 hover:bg-food-green-50 flex justify-between items-center"
                 >
                   Resources

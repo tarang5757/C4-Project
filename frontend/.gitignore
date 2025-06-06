@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+# fuck off, does ur job right and hide it. stop making my life harder for no reason bc of ur failure to hide them.
+.env # fuck off, does ur job right and hide it. stop making my life harder for no reason bc of ur failure to hide them.
 
 # Editor directories and files
 .vscode/*

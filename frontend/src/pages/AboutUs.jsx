@@ -1,30 +1,38 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import TeamSection from "../components/TeamSection";
 
 const AboutUs = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-
-      
-
       {/* Mission Section */}
       <section className="py-10 px-4 bg-white">
-
-         <div className="flex justify-center items-center">
-            <img
-              src="/about.png"
-              alt="Our Team"
-              className="w-1/2 h-1/2 rounded-2xl shadow-lg mb-5"
-            />
-          </div>
+        <div className="flex justify-center items-center">
+          <img
+            src="/about.png"
+            alt="Our Team"
+            className="w-1/2 h-1/2 rounded-2xl shadow-lg mb-5"
+          />
+        </div>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-5">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Story</h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
           <div className="max-w-2xl mx-auto text-center space-y-6">
-            <p className="text-gray-700 leading-relaxed text-lg"> Our story starts with C4 at York University, a place where we create projects that go beyond the classroom and have a real impact on the community. It was here that we recognized the growing challenges of food insecurity and nutrition, and knew we needed to take action. </p> <p className="text-gray-700 leading-relaxed text-lg"> Today, we're working to make it easy for anyone to contribute to solving the food insecurity problem. Whether you're a farmer with extra produce or simply someone who wants to help nourish your community, we're here to make that connection happen. </p>
+            <p className="text-gray-700 leading-relaxed text-lg">
+              {" "}
+              Our story starts with C4 at York University, a place where we
+              create projects that go beyond the classroom and have a real
+              impact on the community. It was here that we recognized the
+              growing challenges of food insecurity and nutrition, and knew we
+              needed to take action.{" "}
+            </p>{" "}
+            <p className="text-gray-700 leading-relaxed text-lg">
+              {" "}
+              Today, we're working to make it easy for anyone to contribute to
+              solving the food insecurity problem. Whether you're a farmer with
+              extra produce or simply someone who wants to help nourish your
+              community, we're here to make that connection happen.{" "}
+            </p>
           </div>
         </div>
       </section>
@@ -33,12 +41,12 @@ const AboutUs = () => {
       <section className="py-10  bg-[#214F4B] opacity-100 ">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4 text-white">
+            <h2 className="text-4xl font-bold  mb-4 text-white">
               What Matters to Us
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-[#4CAF50] mb-4">
@@ -66,7 +74,6 @@ const AboutUs = () => {
               </p>
             </div>
             <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
-              
               <div className="text-[#4CAF50] mb-4">
                 <svg
                   className="w-12 h-12"
@@ -91,7 +98,7 @@ const AboutUs = () => {
                 of the earth for future generations.
               </p>
             </div>
-            
+
             <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-[#4CAF50] mb-4">
                 <svg
@@ -125,17 +132,15 @@ const AboutUs = () => {
           </button>
         </div>
       </section>
-     
-      
 
       {/* Donation Section */}
       <section className="py-24 px-4 bg-[#5DAA75] opacity-100 ">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6 text-white">
+          <h2 className="text-4xl font-bold  mb-6 text-white">
             Support Food Security
           </h2>
           <div className="w-24 h-1 bg-black mx-auto mb-8 "></div>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto text-white">
+          <p className="text-xl  mb-12 max-w-2xl mx-auto text-white">
             Together, we can make a difference in our community. Your support
             helps ensure that fresh, nutritious food reaches those who need it
             most.
@@ -272,32 +277,6 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
-      {/* Join Us Section */}
-      {/* <section className="py-24 px-4 bg-[#4CAF50] text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">Want to Join Our Team?</h2>
-          <p className="text-xl mb-12 max-w-2xl mx-auto">
-            We're always looking for friendly, caring people who want to help
-            make a difference in their community. Come be part of something
-            special!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="inline-block bg-white text-[#4CAF50] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg shadow-lg"
-            >
-              Get in Touch
-            </Link>
-            <Link
-              to="/partners"
-              className="inline-block border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#4CAF50] transition-colors text-lg"
-            >
-              See How to Help
-            </Link>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 };

@@ -21,6 +21,10 @@ export async function findMatches(farmerId) {
           user_type,
           lat,
           lng,
+          address,
+          city,
+          state,
+          zip_code,
           organization_name,
           contact_name,
           phone,
@@ -49,6 +53,10 @@ export async function findMatches(farmerId) {
           user_type,
           lat,
           lng,
+          address,
+          city,
+          state,
+          zip_code,
           organization_name,
           contact_name,
           phone,
@@ -78,32 +86,38 @@ export async function findMatches(farmerId) {
 
       const matchScore = calculateMatchScore(farmer, recipient);
 
-      if (matchScore >= 50) {
-        // Consider matches with a score of 50 or higher
-        potentialMatches.push({
-          farmer_id: farmer.id,
-          recipient_id: recipient.id,
-          match_score: matchScore,
-          match_reasons: getMatchReasons(farmer, recipient, matchScore),
-          // Include basic farmer and recipient info for display
-          farmer: {
-            id: farmer.id,
-            organization_name:
-              farmer.profile.organization_name || "Unnamed Farmer",
-            contact_name: farmer.profile.contact_name,
-            phone: farmer.profile.phone,
-            email: farmer.profile.email,
-          },
-          recipient: {
-            id: recipient.id,
-            organization_name:
-              recipient.profile.organization_name || "Unnamed Organization",
-            contact_name: recipient.profile.contact_name,
-            phone: recipient.profile.phone,
-            email: recipient.profile.email,
-          },
-        });
-      }
+      // Add all calculated matches to potentialMatches, regardless of score
+      potentialMatches.push({
+        farmer_id: farmer.id,
+        recipient_id: recipient.id,
+        match_score: matchScore,
+        match_reasons: getMatchReasons(farmer, recipient, matchScore),
+        // Include basic farmer and recipient info for display
+        farmer: {
+          id: farmer.id,
+          address: farmer.profile.address,
+          city: farmer.profile.city,
+          state: farmer.profile.state,
+          zip_code: farmer.profile.zip_code,
+          organization_name:
+            farmer.profile.organization_name || "Unnamed Farmer",
+          contact_name: farmer.profile.contact_name,
+          phone: farmer.profile.phone,
+          email: farmer.profile.email,
+        },
+        recipient: {
+          id: recipient.id,
+          address: recipient.profile.address,
+          city: recipient.profile.city,
+          state: recipient.profile.state,
+          zip_code: recipient.profile.zip_code,
+          organization_name:
+            recipient.profile.organization_name || "Unnamed Organization",
+          contact_name: recipient.profile.contact_name,
+          phone: recipient.profile.phone,
+          email: recipient.profile.email,
+        },
+      });
     }
 
     // Sort potential matches by score in descending order and return top 10
@@ -539,7 +553,7 @@ async function areItemsAlreadyMatched(farmerId, recipientId) {
       .from("matches")
       .select("farmer_id, recipient_id, status")
       .or(
-        `and(farmer_id.eq.${farmerId},status.eq.accepted),and(recipient_id.eq.${recipientId},status.eq.accepted)`
+        `and(farmer_id.eq.${farmerId},status.in.(accepted,pending)),and(recipient_id.eq.${recipientId},status.in.(accepted,pending))`
       );
 
     if (error)
@@ -645,7 +659,7 @@ async function sendMatchNotification(matchId) {
     const { data: profiles, error: profilesError } = await supabase
       .from("profiles")
       .select(
-        "id, phone, whatsapp, email, notification_preferences, organization_name, contact_name"
+        "id, phone, whatsapp, email, notification_preferences, organization_name, contact_name, address, city, state"
       )
       .in("id", [farmerProfileId, recipientProfileId]);
 
@@ -719,6 +733,10 @@ async function sendMatchNotification(matchId) {
       matchId: match.id,
       farmer: {
         id: match.farmer_id,
+        address: farmerProfile.address,
+        city: farmerProfile.city,
+        state: farmerProfile.state,
+
         phone: formattedFarmerPhone,
         whatsapp: formattedFarmerWhatsapp,
         email: farmerProfile.email,
@@ -734,6 +752,9 @@ async function sendMatchNotification(matchId) {
       },
       recipient: {
         id: match.recipient_id,
+        address: recipientProfile.address,
+        city: recipientProfile.city,
+        state: recipientProfile.state,
         phone: formattedRecipientPhone,
         whatsapp: formattedRecipientWhatsapp,
         email: recipientProfile.email,
@@ -760,8 +781,7 @@ async function sendMatchNotification(matchId) {
     // --- End Debugging Logs ---
 
     // 5. Call Backend Endpoint
-    const backendApiUrl =
-      import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+    import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
     const notificationEndpoint = `${backendApiUrl}/api/send-match-notification`;
 
     const response = await fetch(notificationEndpoint, {

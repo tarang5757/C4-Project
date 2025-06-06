@@ -1,15 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PartnerSection from "./PartnerSection";
+import PartnerMap from "../components/PartnerMap";
 
 const Partners = () => {
   // Define the heading and number of cards to pass to Section
   const heading = "Partner with Us";
   const numCards = 4; // Adjust the number of cards as per your requirement
-  
+
   return (
     <div className="min-h-screen bg-gray-50">
-      
       <div className="relative min-h-screen overflow-hidden">
         {/* Background with Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
@@ -34,8 +33,8 @@ const Partners = () => {
               </h1>
               <div className="w-24 h-1 bg-white mx-auto"></div>
               <p className="text-xl leading-relaxed max-w-2xl mx-auto">
-                Whether you're a farmer with extra produce or someone who wants to
-                help feed your community, we'd love to have you join our food
+                Whether you're a farmer with extra produce or someone who wants
+                to help feed your community, we'd love to have you join our food
                 sharing network.
               </p>
 
@@ -47,11 +46,28 @@ const Partners = () => {
         </div>
       </div>
 
+      {/* Partner Locations Map Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Our Partner Locations
+            </h2>
+            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+            <p className="mt-6 text-gray-600 text-lg max-w-2xl mx-auto">
+              Find our partners across the Greater Toronto Area. Click on any
+              marker to learn more about each location.
+            </p>
+          </div>
+          <PartnerMap />
+        </div>
+      </section>
+
       {/* Now include the Section component here */}
-      <PartnerSection heading={"Intrested Parties"} 
-      numCards={7} 
-      buttonText="Koin the cause"  // Custom text for page 2
-      buttonLink="https://www.example.com/donate-now"  // Custom link for page 2 
+      <PartnerSection
+        heading={"Interested Parties"}
+        numCards={7}
+        buttonText="Join the cause" // Custom text for page 2
       />
 
       {/* Partnership Impact Section */}
@@ -88,7 +104,8 @@ const Partners = () => {
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 We make it easy to get fresh, healthy food for the people you
-                serve. Whether you're a food bank, shelter, or neighborhood group.
+                serve. Whether you're a food bank, shelter, or neighborhood
+                group.
               </p>
             </div>
           </div>
@@ -106,7 +123,7 @@ const Partners = () => {
       >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4 text-white">
+            <h2 className="text-4xl font-bold  mb-4 text-white">
               Who Can Join Us
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
@@ -150,27 +167,30 @@ const Partners = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-50 rounded-lg p-8">
-              <h3 className="text-xl font-semibold text-gray-900">Farm Fresh Co.</h3>
+              <h3 className="text-xl font-semibold text-gray-900">
+                Farm Fresh Co.
+              </h3>
               <p className="text-[#4CAF50]">Local Farm</p>
               <p className="text-gray-600 leading-relaxed italic">
-                "We used to feel bad about having to throw away extra produce. Now, thanks to this network, we can share our food with people who really need it."
+                "We used to feel bad about having to throw away extra produce.
+                Now, thanks to this network, we can share our food with people
+                who really need it."
               </p>
             </div>
             <div className="bg-gray-50 rounded-lg p-8">
-              <h3 className="text-xl font-semibold text-gray-900">Community Food Bank</h3>
+              <h3 className="text-xl font-semibold text-gray-900">
+                Community Food Bank
+              </h3>
               <p className="text-[#4CAF50]">Food Bank</p>
               <p className="text-gray-600 leading-relaxed italic">
-                "Getting fresh, local food has been a game-changer for us. The people we serve love the quality, and we love being able to support our local farmers."
+                "Getting fresh, local food has been a game-changer for us. The
+                people we serve love the quality, and we love being able to
+                support our local farmers."
               </p>
             </div>
           </div>
         </div>
       </section>
-      
-      
-
-      
-
     </div>
   );
 };
