@@ -1,102 +1,158 @@
-import React, { useState, useCallback } from "react";
+import React, { useRef } from "react";
 import {
   useJsApiLoader,
+  Autocomplete,
   GoogleMap,
   Marker,
-  InfoWindow,
 } from "@react-google-maps/api";
 
-const partnerLocations = [
-  {
-    id: 1,
-    name: "North York Harvest",
-    position: { lat: 43.7615, lng: -79.4111 },
-    address: "116 Industry St, Toronto, ON M6M 4L8",
-    type: "Food Bank & Community Services",
+// Simple map configuration
+const mapConfig = {
+  containerStyle: {
+    width: "100%",
+    height: "300px",
+    marginTop: "1rem",
+    borderRadius: "0.5rem",
   },
-  {
-    id: 2,
-    name: "Feed Ontario",
-    position: { lat: 43.6532, lng: -79.3832 },
-    address: "191 New Toronto St, Etobicoke, ON M8V 2E7",
-    type: "Food Security Network",
+  defaultCenter: { lat: 43.6532, lng: -79.3832 }, // Toronto
+  defaultZoom: 15,
+  mapOptions: {
+    disableDefaultUI: true,
+    zoomControl: true,
+    styles: [
+      {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
+      },
+    ],
   },
-  {
-    id: 3,
-    name: "Fred Victor",
-    position: { lat: 43.6548, lng: -79.3871 },
-    address: "145 Queen St E, Toronto, ON M5C 2S8",
-    type: "Shelter & Community Outreach",
-  },
-  {
-    id: 4,
-    name: "Second Harvest",
-    position: { lat: 43.6532, lng: -79.3832 },
-    address: "120 The Esplanade, Toronto, ON M5E 1R4",
-    type: "Food Rescue Organization",
-  },
-];
-
-const containerStyle = {
-  width: "100%",
-  height: "500px",
-  borderRadius: "1rem",
 };
 
-const defaultCenter = { lat: 43.6532, lng: -79.3832 };
+const AddressInput = ({ label, value, onChange, required, error }) => {
+  const autocompleteRef = useRef(null);
 
-const PartnerMap = () => {
-  const [selectedPartner, setSelectedPartner] = useState(null);
+  // Debug logging
+  console.log("Google Maps API Key:", import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
+  console.log("All env variables:", import.meta.env);
 
-  const { isLoaded, loadError } = useJsApiLoader({
+  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
   });
 
-  // Center the map to fit all markers
-  const onMapLoad = useCallback((map) => {
-    const bounds = new window.google.maps.LatLngBounds();
-    partnerLocations.forEach(({ position }) => bounds.extend(position));
-    map.fitBounds(bounds);
-  }, []);
+  const handlePlaceSelected = () => {
+    if (!autocompleteRef.current) return;
 
-  if (loadError) return <div>Error loading maps</div>;
-  if (!isLoaded) return <div>Loading Maps...</div>;
+    const place = autocompleteRef.current.getPlace();
+    if (!place.geometry) return;
+
+    const { lat, lng } = place.geometry.location;
+    const components = place.address_components;
+
+    // Helper function to get address component
+    const getComponent = (type) => {
+      const component = components.find((c) => c.types.includes(type));
+      return component ? component.long_name : "";
+    };
+
+    // Get address components
+    const locationData = {
+      address: `${getComponent("street_number")} ${getComponent(
+        "route"
+      )}`.trim(),
+      city: getComponent("locality"),
+      state:
+        components.find((c) => c.types.includes("administrative_area_level_1"))
+          ?.short_name || "",
+      zipCode: getComponent("postal_code"),
+      latitude: lat(),
+      longitude: lng(),
+      formattedAddress: place.formatted_address,
+    };
+
+    onChange(locationData);
+  };
+
+  if (!isLoaded) {
+    return (
+      <div className="mb-6">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {label}
+          {required && <span className="text-red-500 ml-1">*</span>}
+        </label>
+        <input
+          type="text"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
+          placeholder="Loading address input..."
+          disabled
+        />
+      </div>
+    );
+  }
+
+  const getBorderClass = () => (error ? "border-red-500" : "border-gray-300");
+  const getMapCenter = () => {
+    if (value?.latitude && value?.longitude) {
+      return { lat: value.latitude, lng: value.longitude };
+    }
+    return mapConfig.defaultCenter;
+  };
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 bg-white rounded-xl shadow-lg">
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        onLoad={onMapLoad}
-        options={{
-          gestureHandling: "cooperative",
-          disableDefaultUI: false,
-        }}
-      >
-        {partnerLocations.map((partner) => (
-          <Marker
-            key={partner.id}
-            position={partner.position}
-            onClick={() => setSelectedPartner(partner)}
-          />
-        ))}
+    <div className="mb-6">
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
+      </label>
 
-        {selectedPartner && (
-          <InfoWindow
-            position={selectedPartner.position}
-            onCloseClick={() => setSelectedPartner(null)}
+      <Autocomplete
+        onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
+        onPlaceChanged={handlePlaceSelected}
+        restrictions={{ country: "ca" }}
+        fields={["address_components", "geometry", "formatted_address"]}
+      >
+        <input
+          type="text"
+          className={`w-full px-4 py-3 border ${getBorderClass()} rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors`}
+          placeholder="Enter your address"
+          defaultValue={value?.formattedAddress || ""}
+          onChange={(e) => {
+            if (!value || e.target.value !== value.formattedAddress) {
+              onChange({ formattedAddress: e.target.value });
+            }
+          }}
+          required={required}
+        />
+      </Autocomplete>
+
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+
+      {value && (
+        <>
+          <div className="mt-2 text-sm text-gray-600">
+            <p>Selected Address:</p>
+            <p className="font-medium">
+              {value.address}, {value.city}, {value.state} {value.zipCode}
+            </p>
+          </div>
+
+          <GoogleMap
+            mapContainerStyle={mapConfig.containerStyle}
+            center={getMapCenter()}
+            zoom={mapConfig.defaultZoom}
+            options={mapConfig.mapOptions}
           >
-            <div style={{ maxWidth: "250px" }}>
-              <h3 style={{ margin: 0 }}>{selectedPartner.name}</h3>
-              <p style={{ margin: "4px 0" }}>{selectedPartner.type}</p>
-              <p style={{ margin: 0, fontSize: "0.9em", color: "#555" }}>
-                {selectedPartner.address}
-              </p>
-            </div>
-          </InfoWindow>
-        )}
-      </GoogleMap>
+            {value.latitude && value.longitude && (
+              <Marker
+                position={{ lat: value.latitude, lng: value.longitude }}
+              />
+            )}
+          </GoogleMap>
+        </>
+      )}
     </div>
   );
 };
 
-export default PartnerMap;
+export default AddressInput;
