@@ -9,13 +9,16 @@ const Footer = () => {
           Connecting communities through sustainable food sharing.
         </p>
         <div className="flex justify-center space-x-6 text-sm">
-          <Link to="#" className="text-gray-400 hover:text-white">
+          {/* <Link to="#" className="text-gray-400 hover:text-white">
             Privacy
+          </Link> */}
+          <Link
+            to="https://www.instagram.com/teamopendoors/"
+            className="text-gray-400 hover:text-white"
+          >
+            Instagram
           </Link>
-          <Link to="#" className="text-gray-400 hover:text-white">
-            Terms
-          </Link>
-          <Link to="#" className="text-gray-400 hover:text-white">
+          <Link to="/contact" className="text-gray-400 hover:text-white">
             Contact
           </Link>
         </div>

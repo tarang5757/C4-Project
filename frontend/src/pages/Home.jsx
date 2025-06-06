@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import QuestionnaireForm from "../components/QuestionnaireForm";
 import Overview from "../components/steps/Overview";
 import PartnerSection from "./PartnerSection";
+import ResourceButtons from "../components/resourceButtons";
 
 const Home = () => {
   return (
     <div className="space-y-0">
       {/* Hero Section - Full Screen */}
       <div className="relative min-h-screen overflow-hidden">
-        {/* Background with Gradient */}
+        {/* Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-food-green-500 via-food-green-600 to-food-orange-500" />
 
         <div
@@ -20,88 +21,41 @@ const Home = () => {
             backgroundSize: "cover",
           }}
         >
-          <div className="absolute inset-0 bg-white bg-opacity-20 z-0"></div>
+          <div className="absolute inset-0 bg-white bg-opacity-20 z-0" />
 
-          {/* Hero Content inside green rounded box */}
+          {/* Hero Content */}
           <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 text-center text-white">
             <div className="bg-[#3A4F41] rounded-xl p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 Nothing Wasted. Everything Shared.
               </h1>
-
-              <div className="w-24 h-1 bg-white mx-auto"></div>
-
+              <div className="w-24 h-1 bg-white mx-auto" />
               <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                 We aim to connect farmers with those in need, creating a
                 sustainable system that reduces food waste and supports
                 communities.
               </p>
 
-              <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+              {/* Updated internal link */}
+              <Link
+                to="/partners"
+                className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black inline-block"
+              >
                 Join Us
-              </button>
-
-              {/* Call to Action (Optional) */}
-              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <button className="bg-white text-green-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                Get Started
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-700 transition-colors">
-                Learn More
-              </button>
-            </div> */}
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Impact Statistics */}
-      {/* <section className="bg-white py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            How We Do It
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-food-green-600 mb-2">
-                100+
-              </div>
-              <div className="text-gray-600 font-medium">
-                Communities Served
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-food-orange-500 mb-2">
-                50K+
-              </div>
-              <div className="text-gray-600 font-medium">Lives Impacted</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-food-green-600 mb-2">
-                25+
-              </div>
-              <div className="text-gray-600 font-medium">
-                Partner Organizations
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-food-orange-500 mb-2">
-                95%
-              </div>
-              <div className="text-gray-600 font-medium">Success Rate</div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Why We Do This Section */}
+      {/* What We're All About */}
       <section className="py-10 px-4 bg-[#FFFBB4] bg-opacity-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-5">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               What We're All About
             </h2>
-            <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
+            <div className="w-24 h-1 bg-[#4CAF50] mx-auto" />
           </div>
 
           <div className="flex justify-center items-center">
@@ -124,21 +78,23 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* how we do it */}
-      <section className="py-10 px-4 ">
-      {<Overview/>}
+
+      {/* How We Do It */}
+      <section className="py-10 px-4">
+        <Overview />
+        <ResourceButtons />
       </section>
 
-      {/* Why We Care Section */}
+      {/* Why We Care */}
       <section className="py-10 px-4 bg-[#EB5D8D]">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-5">
             <h2 className="text-4xl font-bold text-white mb-4">Why We Care</h2>
-            <div className="w-24 h-1 bg-[#FFFBB4] mx-auto"></div>
+            <div className="w-24 h-1 bg-[#FFFBB4] mx-auto" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* 1. Food Access First */}
+            {/* 1. Feed More People */}
             <div className="text-center bg-white rounded-lg p-8 shadow-sm">
               <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
@@ -184,13 +140,12 @@ const Home = () => {
               </div>
               <h3 className="text-xl font-semibold mb-4">Stop Food Waste</h3>
               <p className="text-gray-600 leading-relaxed">
-                When we share food, we're not just feeding people - we're
-                building stronger communities. Every meal shared is a chance to
-                show we care about each other.
+                When we share food, we're not just feeding people—we're building
+                stronger communities.
               </p>
             </div>
 
-            {/* 3. Strengthen Local Systems */}
+            {/* 3. Care for the Planet */}
             <div className="text-center bg-white rounded-lg p-8 shadow-sm">
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
@@ -211,25 +166,25 @@ const Home = () => {
                 Care for Our Planet
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                When we waste less food, we help our planet too. It's a simple
-                way to make a big difference for our environment and future
-                generations.
+                When we waste less food, we help our planet too. It's a small
+                act with a big impact.
               </p>
             </div>
           </div>
         </div>
       </section>
-      
-      {/* Now include the Section component here */}
-      <PartnerSection heading={"Intrested Parties"} 
-      numCards={4} 
-      buttonText="See More"  // Custom text for page 2
-      buttonLink="/partners"  // Custom link for page 2 
+
+      {/* Partner Section */}
+      <PartnerSection
+        heading="Interested Parties"
+        numCards={4}
+        buttonText="See More"
+        buttonLink="/partners" // ✅ fixed trailing space
       />
 
       {/* Call to Action */}
       <section
-        className="py-8 px-6 text-center "
+        className="py-8 px-6 text-center"
         style={{ backgroundColor: "#F0F3F3" }}
       >
         <div className="max-w-4xl mx-auto">
@@ -247,9 +202,14 @@ const Home = () => {
             Join our growing community of changemakers and help us build a more
             sustainable and connected world.
           </p>
-          <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg">
+
+          {/* Updated internal link */}
+          <Link
+            to="/partners"
+            className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg inline-block text-center"
+          >
             Join Our Mission
-          </button>
+          </Link>
         </div>
       </section>
     </div>

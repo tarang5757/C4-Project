@@ -15,6 +15,7 @@ const Navbar = () => {
     { name: "Meet The Team", path: "/Team" },
     { name: "Partners", path: "/partners" },
     { name: "How Can I help?", path: "/BecomePartner" },
+    { name: "ContactUs", path: "/contact" },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -99,6 +100,14 @@ const Navbar = () => {
                     className="block px-4 py-2 text-gray-700 hover:bg-food-green-50 hover:text-food-green-600"
                   >
                     Shelters / Food Banks / Soup Kitchens
+                  </Link>
+                  {/* New Resource */}
+                  <Link
+                    to="/resources/food-storage-guideline"
+                    onClick={() => setIsResourcesOpen(false)}
+                    className="block px-4 py-2 text-gray-700 hover:bg-food-green-50 hover:text-food-green-600"
+                  >
+                    Food Storage Guideline
                   </Link>
                 </div>
               )}

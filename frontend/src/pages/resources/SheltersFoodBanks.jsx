@@ -1,111 +1,147 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ForRecipients from "../../components/steps/ForRecipients";
+
+const resources = [
+  {
+    name: "Shelter Toronto",
+    url: "https://www.toronto.ca/community-people/housing-shelter/homeless-help/shelters/",
+    description:
+      "List of shelters in Toronto and the GTA offering temporary accommodation and support.",
+  },
+  {
+    name: "Daily Bread Food Bank",
+    url: "https://www.dailybread.ca/need-food/programs-by-location/",
+    description: "Find food banks and community food programs across Toronto.",
+  },
+  {
+    name: "City of Toronto Homeless Services",
+    url: "https://www.toronto.ca/community-people/housing-shelter/homeless-help/",
+    description: "Details on shelter and homelessness services in Toronto.",
+  },
+  {
+    name: "Covenant House Toronto",
+    url: "https://www.covenanthousetoronto.ca/",
+    description:
+      "Shelter and services for homeless youth aged 16–24 in Toronto.",
+  },
+  {
+    name: "The Lighthouse",
+    url: "https://www.thelighthousecentre.ca/",
+    description: "Emergency shelter and support services for those in need.",
+  },
+  {
+    name: "Fred Victor",
+    url: "https://www.fredvictor.org/",
+    description:
+      "Emergency shelter, housing, and community programs in Toronto.",
+  },
+  {
+    name: "The Stop Community Food Centre",
+    url: "https://www.thestop.org/",
+    description: "Community food programs and advocacy to fight hunger.",
+  },
+  {
+    name: "Toronto Central Healthline – Food Banks",
+    url: "https://www.torontocentralhealthline.ca/listservices.aspx?id=10572&region=Toronto",
+    description: "Directory of food banks and food programs in Toronto.",
+  },
+  {
+    name: "Toronto Shelter Network",
+    url: "https://www.torontoshelternetwork.com/",
+    description: "Supports shelters, respites, and drop-ins across the city.",
+  },
+];
+
 const SheltersFoodBanks = () => {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      {<ForRecipients/>}
-      <h1 className="text-3xl font-bold mt-16 mb-4">Toronto Shelters, Food Banks & Soup Kitchens</h1>
+    <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <ForRecipients />
 
-      <p className="mb-4 text-lg">
-        Toronto is home to many incredible organizations dedicated to helping individuals and families experiencing homelessness or food insecurity. Below is a list of resources to help you find shelters, food banks, and soup kitchens in the city.
-      </p>
+      {/* Section to display the list of resources */}
+      <div>
+        <h2 className="text-3xl font-extrabold text-gray-900 mb-6 text-center tracking-tight">
+          Additional Resources
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {resources.map((resource, index) => (
+            <div
+              key={index}
+              className="relative bg-white border-l-4 border-blue-500 rounded-xl shadow-lg p-6 flex flex-col gap-3 transition-transform duration-200 hover:-translate-y-1 hover:shadow-2xl"
+            >
+              <div className="absolute -left-6 top-6 bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 pl-6">
+                {resource.name}
+              </h3>
+              <p className="text-gray-600 text-base pl-6">
+                {resource.description}
+              </p>
+              <div className="pl-6 mt-2">
+                <a
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold shadow hover:bg-blue-600 transition-colors duration-150"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-      <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Toronto Shelters and Housing Assistance</h2>
-        <p className="mb-4">
-          In Toronto, there are various types of shelters that provide emergency housing, transitional support, and long-term solutions for individuals in need. These organizations also often provide additional services, including meals, job training, and mental health support.
-        </p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>
-            <strong>Emergency Shelters:</strong> Temporary accommodation for those in urgent need of a place to stay.
-          </li>
-          <li>
-            <strong>Transitional Housing:</strong> Longer-term accommodation that helps individuals transition back into independent living.
-          </li>
-          <li>
-            <strong>Family Shelters:</strong> Shelters offering safe spaces for families, including children.
-          </li>
-        </ul>
-      </section>
+      {/* Stunning Navigation Card */}
+      <div className="relative bg-gradient-to-tr from-blue-100 via-white to-blue-50 p-6 rounded-2xl shadow-xl border border-blue-200 backdrop-blur-md">
+        <div className="flex items-start gap-4">
+          {/* Icon */}
+          <div className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-md">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 8v4l3 3M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"></path>
+            </svg>
+          </div>
 
-      <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Toronto Food Banks and Soup Kitchens</h2>
-        <p className="mb-4">
-          Toronto's food banks and soup kitchens work together to ensure that no one in the city goes hungry. Many of these organizations provide free meals and grocery items to those in need, regardless of their circumstances.
-        </p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>
-            <strong>Food Banks:</strong> Organizations that distribute food to individuals and families in need.
-          </li>
-          <li>
-            <strong>Shelter Kitchens & Soup Kitchens:</strong> Locations that provide free, hot meals to those in need.
-          </li>
-        </ul>
-      </section>
+          {/* Text Content */}
+          <div>
+            <h2 className="text-2xl font-extrabold text-blue-900 mb-1">
+              Master Food Storage
+            </h2>
+            <p className="text-gray-700 mb-4">
+              Learn how to store food efficiently and reduce waste with our
+              trusted guidelines.
+            </p>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-2">Find Toronto Shelters, Food Banks, and Soup Kitchens</h2>
-        <p>
-          Below are some local resources where you can find shelters, food banks, and soup kitchens in Toronto:
-        </p>
-        <ul className="list-disc list-inside space-y-2 mt-4">
-          <li>
-            <a
-              href="https://www.sheltertoronto.ca/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-food-green-600 underline"
+            <Link
+              to="/resources/food-storage-guideline"
+              className="inline-block px-5 py-2 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
             >
-              Shelter Toronto
-            </a>
-            : A comprehensive list of shelters across Toronto and the Greater Toronto Area.
-          </li>
-          <li>
-            <a
-              href="https://www.dailybread.ca/find-food/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-food-green-600 underline"
-            >
-              Daily Bread Food Bank
-            </a>
-            : Find food banks in Toronto and learn how to get food assistance.
-          </li>
-          <li>
-            <a
-              href="https://www.foodrescue.ca/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-food-green-600 underline"
-            >
-              Food Rescue Toronto
-            </a>
-            : Helping individuals and communities access food resources in Toronto.
-          </li>
-          <li>
-            <a
-              href="https://www.toronto.ca/services-payments/homeless-services/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-food-green-600 underline"
-            >
-              City of Toronto Homeless Services
-            </a>
-            : Information on shelters, housing programs, and other homelessness services in Toronto.
-          </li>
-          <li>
-            <a
-              href="https://www.soupkitchen.org/locations/toronto"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-food-green-600 underline"
-            >
-              Soup Kitchen Locations (Toronto)
-            </a>
-            : A list of soup kitchens offering hot meals throughout the city.
-          </li>
-        </ul>
-      </section>
+              📘 View Guidelines
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

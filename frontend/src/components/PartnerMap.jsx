@@ -109,13 +109,13 @@ const PartnerMap = () => {
                 >
                   ✕
                 </button>
-                <h3 className="text-lg font-semibold mb-1 text-orange-300 truncate">
+                <h3 className="text-lg font-bold mb-1 text-orange-300 truncate">
                   {selectedPartner.name}
                 </h3>
                 <span className="inline-block bg-orange-500 bg-opacity-80 text-gray-100 text-xs font-medium px-3 py-1 rounded-full mb-2 shadow-sm uppercase tracking-wide">
                   {selectedPartner.type}
                 </span>
-                <p className="text-sm text-gray-300 truncate">
+                <p className="text-sm text-gray-300 truncate font-semibold">
                   {selectedPartner.address}
                 </p>
               </div>

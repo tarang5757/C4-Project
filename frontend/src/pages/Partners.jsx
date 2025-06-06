@@ -38,15 +38,18 @@ const Partners = () => {
                 sharing network.
               </p>
 
-              <button className="bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+              <a
+                href="/BecomePartner"
+                className="inline-block bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black"
+              >
                 Join Us to Make a Difference
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Partner Locations Map Section */}
+      {/* Partner Locations Map Section - Moved to be above Interested Parties */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -63,12 +66,15 @@ const Partners = () => {
         </div>
       </section>
 
-      {/* Now include the Section component here */}
-      <PartnerSection
-        heading={"Interested Parties"}
-        numCards={7}
-        buttonText="Join the cause" // Custom text for page 2
-      />
+      <section id="All_Partner">
+        {/* Now include the Section component here */}
+        <PartnerSection
+          heading={"Interested Parties"}
+          numCards={7}
+          buttonText="Join the cause" // Custom text for page 2
+          buttonLink="/BecomePartner" // Custom link for page 2
+        />
+      </section>
 
       {/* Partnership Impact Section */}
       <section className="py-10 px-4 bg-white">
@@ -123,7 +129,7 @@ const Partners = () => {
       >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-4xl font-bold  mb-4 text-white">
+            <h2 className="text-4xl font-bold mb-4 text-white">
               Who Can Join Us
             </h2>
             <div className="w-24 h-1 bg-[#4CAF50] mx-auto"></div>
@@ -150,9 +156,13 @@ const Partners = () => {
             </div>
           </div>
           <div className="flex justify-center mt-10 items-center">
-            <button className="bg-[#FFC709] text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+            <a
+              href="/BecomePartner"
+              className="inline-block bg-[#FFC709] mb-16 text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black"
+            >
+              {" "}
               Join Our Mission
-            </button>
+            </a>
           </div>
         </div>
       </section>

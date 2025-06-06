@@ -126,10 +126,14 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
+
         <div className="flex justify-center mt-10 items-center">
-          <button className="bg-[#FFC709] text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black">
+          <a
+            href="/BecomePartner"
+            className="bg-[#FFC709] text-food-black-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg text-lg text-black inline-block"
+          >
             Join Us
-          </button>
+          </a>
         </div>
       </section>
 

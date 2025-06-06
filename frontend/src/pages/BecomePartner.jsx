@@ -1,4 +1,5 @@
 import QuestionnaireForm from "../components/QuestionnaireForm";
+import ResourceButtons from "../components/resourceButtons";
 
 const BecomePartner = () => {
   return (
@@ -15,6 +16,7 @@ const BecomePartner = () => {
               Take a quick moment to tell us about yourself and how you'd like
               to help
             </p>
+            <ResourceButtons />
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8">
             <QuestionnaireForm />

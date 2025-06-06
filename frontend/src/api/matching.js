@@ -781,7 +781,8 @@ async function sendMatchNotification(matchId) {
     // --- End Debugging Logs ---
 
     // 5. Call Backend Endpoint
-    import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+    const backendApiUrl =
+      import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
     const notificationEndpoint = `${backendApiUrl}/api/send-match-notification`;
 
     const response = await fetch(notificationEndpoint, {

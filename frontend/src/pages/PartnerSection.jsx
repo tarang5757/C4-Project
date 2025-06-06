@@ -58,39 +58,41 @@ const peopleData = [
   //   "link": "mailto:awillats@sympatico.ca",
   //   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9x3gDlxuca5DnICE3D91re4f_BmIuioIeow&s"
   // },
-  {
-    id: 7,
-    title: "Natalie Fingerhut",
-    desc1: "Ve’ahavta and St Luke’s Meal Program",
-    desc2:
-      "Providing meals and support services to those experiencing homelessness.",
-    link: "mailto:nataliefingerhut@gmail.com",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9x3gDlxuca5DnICE3D91re4f_BmIuioIeow&s",
-  },
 ];
 
 // Card Component
+// Card Component
 const Card = ({ title, desc1, desc2, link, image }) => (
-  <div className="bg-white rounded-2xl p-6 text-center shadow-lg w-full max-w-[220px] transition-transform transform hover:scale-105 hover:shadow-xl">
+  <div className="bg-white rounded-2xl p-6 text-center shadow-lg w-full max-w-[220px] transition-transform transform hover:scale-105 hover:shadow-xl flex flex-col justify-between">
     <img
       src={image}
-      alt={title}
+      alt={`${title} logo`}
       className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
     />
-    <h3 className="text-lg font-semibold mb-2">{title}</h3>
-    <p className="text-sm text-gray-700">{desc1}</p>
-    <p className="text-sm text-gray-700 mt-2">{desc2}</p>
-    <a href={link} target="_blank" rel="noopener noreferrer">
-      <button className="mt-4 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
-        Learn More
-      </button>
+    <h3 className="text-lg font-semibold mb-1">{title}</h3>
+    <p className="text-sm text-gray-700 mb-1">{desc1}</p>
+    <p className="text-sm text-gray-700 mb-4">{desc2}</p>
+
+    {/* Use <a> styled like a button */}
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Learn more about ${title}`}
+      className="w-full bg-yellow-400 text-black px-4 py-3 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300 block"
+    >
+      Learn More
     </a>
   </div>
 );
 
 // Section Component
-const PartnerSection = ({ heading, numCards, buttonText, buttonLink }) => {
+const PartnerSection = ({
+  heading,
+  numCards = 4,
+  buttonText = "Join the cause",
+  buttonLink = "#",
+}) => {
   // Calculate the height of the section based on the number of cards
   const cardHeight = 280; // Adjusted card height for better spacing
   const totalContentHeight = numCards * cardHeight + 150; // Added more margin
@@ -98,7 +100,9 @@ const PartnerSection = ({ heading, numCards, buttonText, buttonLink }) => {
   return (
     <section className="bg-[#214f4b] text-black flex flex-col items-center justify-center px-4 py-10">
       {/* Heading */}
-      <h1 className="text-4xl  font-bold text-white mb-6">{heading}</h1>
+      <h1 className="text-4xl  font-bold text-white mb-6 text-center">
+        {heading}
+      </h1>
 
       {/* Description */}
       <p className="text-center text-lg text-white max-w-3xl mb-10">
@@ -106,33 +110,23 @@ const PartnerSection = ({ heading, numCards, buttonText, buttonLink }) => {
       </p>
 
       {/* Cards Grid */}
-      <div className="flex justify-center items-center w-full mb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl">
-          {peopleData.slice(0, numCards).map((person) => (
-            <Card
-              key={person.id}
-              title={person.title}
-              desc1={person.desc1}
-              desc2={person.desc2}
-              link={person.link}
-              image={person.image} // Pass the image URL to the Card component
-            />
-          ))}
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-10">
+        {peopleData.slice(0, numCards).map((person) => (
+          <Card key={person.id} {...person} />
+        ))}
       </div>
 
-      {/* Button */}
-      <div className="w-full flex justify-center">
-        <a href={buttonLink} target="_blank" rel="noopener noreferrer">
-          <button className="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300">
-            {buttonText || "Join the cause"}{" "}
-            {/* Default button text if not provided */}
-          </button>
-        </a>
-      </div>
+      {/* CTA Button */}
+      <a
+        href={buttonLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm hover:bg-yellow-500 transition ease-in-out duration-300"
+      >
+        {buttonText}
+      </a>
     </section>
   );
 };
 
-// Export Section component
 export default PartnerSection;
