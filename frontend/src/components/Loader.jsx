@@ -5,12 +5,14 @@ const Loader = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
       <div
-        className="transform scale-150 transition-all duration-300 ease-in-out"
+        className="transform scale-[1.2] sm:scale-[1.3] md:scale-[1.4] lg:scale-[1.5] transition-all duration-300 ease-in-out"
         style={{
           filter: "drop-shadow(0 0 20px rgba(0, 0, 0, 0.1))",
           willChange: "transform",
           backfaceVisibility: "hidden",
           perspective: "1000px",
+          maxWidth: "90vw",
+          maxHeight: "90vh",
         }}
       >
         <DotLottieReact
@@ -18,8 +20,8 @@ const Loader = () => {
           loop
           autoplay
           style={{
-            width: "400px",
-            height: "400px",
+            width: "min(400px, 80vw)",
+            height: "min(400px, 80vw)",
             imageRendering: "crisp-edges",
             WebkitFontSmoothing: "antialiased",
             MozOsxFontSmoothing: "grayscale",
