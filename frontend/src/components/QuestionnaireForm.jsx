@@ -49,6 +49,7 @@ const QuestionnaireForm = () => {
     preferredDeliveryDays: [],
     urgencyLevel: "",
   });
+  const [formErrors, setFormErrors] = useState({});
 
   const autocompleteRef = useRef(null);
 
@@ -393,11 +394,35 @@ const QuestionnaireForm = () => {
     }));
   };
 
+  const validateStep = () => {
+    const currentFields = questions[currentStep].fields;
+    const errors = {};
+    currentFields.forEach((field) => {
+      if (field.required) {
+        if (field.type === "multiselect" && formData[field.name].length === 0) {
+          errors[field.name] = `${field.label} is required.`;
+        } else if (!formData[field.name]) {
+          errors[field.name] = `${field.label} is required.`;
+        }
+      }
+    });
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleNextStep = () => {
+    if (validateStep()) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
   const renderField = (field) => {
     if (field.condition && !field.condition(formData)) return null;
 
     const baseInputClasses =
       "w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors";
+    const errorInputClasses =
+      "w-full px-4 py-3 border border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors";
     const baseLabelClasses = "block text-sm font-medium text-gray-700 mb-2";
 
     switch (field.type) {
@@ -415,9 +440,16 @@ const QuestionnaireForm = () => {
               type={field.type}
               value={formData[field.name]}
               onChange={(e) => handleInputChange(field.name, e.target.value)}
-              className={baseInputClasses}
+              className={
+                formErrors[field.name] ? errorInputClasses : baseInputClasses
+              }
               required={field.required}
             />
+            {formErrors[field.name] && (
+              <p className="text-red-500 text-xs mt-1">
+                {formErrors[field.name]}
+              </p>
+            )}
           </div>
         );
 
@@ -431,7 +463,9 @@ const QuestionnaireForm = () => {
             <select
               value={formData[field.name]}
               onChange={(e) => handleInputChange(field.name, e.target.value)}
-              className={baseInputClasses}
+              className={
+                formErrors[field.name] ? errorInputClasses : baseInputClasses
+              }
               required={field.required}
             >
               <option value="">Select an option...</option>
@@ -441,6 +475,11 @@ const QuestionnaireForm = () => {
                 </option>
               ))}
             </select>
+            {formErrors[field.name] && (
+              <p className="text-red-500 text-xs mt-1">
+                {formErrors[field.name]}
+              </p>
+            )}
           </div>
         );
 
@@ -470,7 +509,11 @@ const QuestionnaireForm = () => {
               {field.label}
               {field.required && <span className="text-red-500 ml-1">*</span>}
             </label>
-            <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+            <div
+              className={`grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg ${
+                formErrors[field.name] ? "border border-red-500" : ""
+              }`}
+            >
               {field.options.map((option) => (
                 <label
                   key={option}
@@ -486,6 +529,11 @@ const QuestionnaireForm = () => {
                 </label>
               ))}
             </div>
+            {formErrors[field.name] && (
+              <p className="text-red-500 text-xs mt-1">
+                {formErrors[field.name]}
+              </p>
+            )}
           </div>
         );
 
@@ -497,7 +545,7 @@ const QuestionnaireForm = () => {
               value={formData.location}
               onChange={handleLocationChange}
               required={field.required}
-              error={field.error}
+              error={formErrors[field.name]}
             />
           </div>
         );
@@ -508,6 +556,10 @@ const QuestionnaireForm = () => {
   };
 
   const handleSubmit = async () => {
+    if (!validateStep()) {
+      return;
+    }
+
     try {
       if (!formData.location) {
         throw new Error("Please enter a valid address");
@@ -733,7 +785,7 @@ const QuestionnaireForm = () => {
             {currentStep < questions.length - 1 ? (
               <button
                 type="button"
-                onClick={() => setCurrentStep(currentStep + 1)}
+                onClick={handleNextStep}
                 className="ml-auto flex items-center px-8 py-3 bg-[#4CAF50] text-white rounded-lg hover:bg-green-600 transition-colors"
               >
                 Next Step
