@@ -35,7 +35,7 @@ const ForRecipients = () => {
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white rounded-xl shadow-lg">
       <header className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-        <div className="text-6xl sm:text-7xl flex-shrink-0">🤲</div>
+        <div className="text-6xl sm:text-7xl flex-shrink-0"> </div>
         <div className="text-center sm:text-left">
           <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
             For Recipients

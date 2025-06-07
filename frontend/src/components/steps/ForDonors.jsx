@@ -3,7 +3,8 @@ import React from "react";
 const steps = [
   {
     title: "Sign Up",
-    description: "Join as a farmer or farmers market to donate surplus produce.",
+    description:
+      "Join as a farmer or farmers market to donate surplus produce.",
     icon: "👩‍🌾",
   },
   {
@@ -13,12 +14,14 @@ const steps = [
   },
   {
     title: "See Nearby Requests",
-    description: "View requests from nearby shelters, food banks, and soup kitchens seeking donations that match your produce.",
+    description:
+      "View requests from nearby shelters, food banks, and soup kitchens seeking donations that match your produce.",
     icon: "📍",
   },
   {
     title: "Coordinate Pickup or Drop-off",
-    description: "Communicate openly with shelters, food banks, and soup kitchens to arrange a convenient pickup or drop-off time.",
+    description:
+      "Communicate openly with shelters, food banks, and soup kitchens to arrange a convenient pickup or drop-off time.",
     icon: "🚚",
   },
   {
@@ -29,17 +32,21 @@ const steps = [
   },
 ];
 
-
-
 const ForDonors = () => {
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white rounded-xl shadow-lg">
       {/* Header */}
       <header className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-        <div className="text-6xl sm:text-7xl flex-shrink-0">{steps[0].icon}</div>
+        <div className="text-6xl sm:text-7xl flex-shrink-0">
+          {steps[0].icon}
+        </div>
         <div className="text-center sm:text-left">
-          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">For Donors</h2>
-          <p className="mt-1 text-gray-600 text-lg italic">(Farmers, Grocers, Restaurants)</p>
+          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+            For Donors
+          </h2>
+          <p className="mt-1 text-gray-600 text-lg italic">
+            (Farmers, Grocers, Restaurants)
+          </p>
         </div>
       </header>
 
@@ -59,7 +66,9 @@ const ForDonors = () => {
             </div>
             <div>
               <h3 className="text-2xl font-semibold text-gray-900">{title}</h3>
-              <p className="mt-1 text-gray-700 leading-relaxed max-w-prose">{description}</p>
+              <p className="mt-1 text-gray-700 leading-relaxed max-w-prose">
+                {description}
+              </p>
             </div>
           </li>
         ))}

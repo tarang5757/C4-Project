@@ -35,17 +35,17 @@ const Overview = () => {
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white rounded-xl shadow-lg">
       <header className="flex flex-col sm:flex-row items-center justify-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 mb-12 text-center sm:text-left">
-        <div className="text-6xl sm:text-7xl flex-shrink-0">🌟</div>
+        <div className="text-6xl sm:text-7xl flex-shrink-0"></div>
         <div>
           <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
             How It Works
           </h2>
           <p className="mt-1 text-gray-600 text-lg italic">
-            Connecting farmers, markets, and organizations to reduce food waste and feed communities.
+            Connecting farmers, markets, and organizations to reduce food waste
+            and feed communities.
           </p>
         </div>
       </header>
-
 
       <ol className="space-y-8">
         {overviewSteps.map(({ title, description, icon }, index) => (
